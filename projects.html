@@ -109,7 +109,7 @@
   </header>
 
   <!-- MOBILE MENU DRAWER -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950 backdrop-blur-lg hidden flex flex-col justify-between p-6">
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950 backdrop-blur-lg hidden flex flex-col justify-between p-6 overflow-y-auto">
     <div>
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div class="flex items-center gap-3">
@@ -1334,7 +1334,7 @@
 
   <!-- PROJECT DETAIL MODAL -->
   <div id="project-modal" class="fixed inset-0 z-50 modal-backdrop bg-slate-950/80 hidden flex items-center justify-center p-4">
-    <div class="modal-content-box bg-white w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+    <div class="modal-content-box bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl border border-slate-200">
       
       <div class="relative h-64 sm:h-72 overflow-hidden bg-slate-900">
         <img id="modal-img" src="assets/images/hero-factory.jpg" alt="Project Image" class="w-full h-full object-cover object-center">
