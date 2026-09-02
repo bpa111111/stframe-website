@@ -2,7 +2,7 @@
 
 Official bilingual corporate website and engineering portfolio for **ST. Frame & Truss Co., Ltd.** — Thailand's premier structural steel fabrication and erection specialist.
 
-🌐 **Live Website:** [https://stframe-website.vercel.app](https://stframe-website.vercel.app)
+🌐 **Live Website (GitHub Pages):** [https://ibankkk.github.io/stframe-website/](https://ibankkk.github.io/stframe-website/)
 
 ---
 
@@ -37,7 +37,7 @@ Official bilingual corporate website and engineering portfolio for **ST. Frame &
 
 ## 🚀 Deployment
 
-- **Vercel Production:** [https://stframe-website.vercel.app](https://stframe-website.vercel.app)
+- **GitHub Pages (Live):** [https://ibankkk.github.io/stframe-website/](https://ibankkk.github.io/stframe-website/)
 - **GitHub Repository:** [https://github.com/ibankkk/stframe-website](https://github.com/ibankkk/stframe-website)
 
 ---
