@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" width="180" height="60">
+        <rect width="180" height="60" fill="transparent"/>
+        <g transform="translate(10, 10)">
+            <path d="M8 32 L20 8 L32 32 Z" fill="none" stroke="#e11d48" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="20" cy="22" r="4" fill="#0284c7"/>
+            <text x="40" y="27" font-family="'Arial Black', Impact, sans-serif" font-weight="900" font-size="22" fill="#0f172a" letter-spacing="1">RITTA</text>
+        </g>
+    </svg>

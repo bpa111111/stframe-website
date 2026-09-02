@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" width="220" height="60">
+        <rect width="220" height="60" fill="transparent"/>
+        <g transform="translate(10, 8)">
+            <polygon points="6,30 18,8 30,30" fill="#065f46"/>
+            <circle cx="18" cy="22" r="5" fill="#d97706"/>
+            <text x="38" y="22" font-family="'Cinzel', 'Georgia', serif" font-weight="bold" font-size="13" fill="#065f46" letter-spacing="1">LANGSUAN</text>
+            <text x="39" y="33" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="8" fill="#d97706" letter-spacing="1.5">VILLAGE PLOENCHIT</text>
+        </g>
+    </svg>

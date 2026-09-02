@@ -1,0 +1,9 @@
+.vercel
+.vercel/
+.codex
+.agents
+.impeccable
+skills-lock.json
+.DS_Store
+Thumbs.db
+*.log

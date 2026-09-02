@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(10, 10)">
+            <path d="M6 24 C6 12, 28 12, 28 24 C28 36, 6 36, 6 24 Z" fill="none" stroke="#dc2626" stroke-width="3.5"/>
+            <text x="36" y="24" font-family="'Arial Black', sans-serif" font-weight="900" font-size="16" fill="#1e293b">STS</text>
+            <text x="75" y="24" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12" fill="#dc2626">LOGISTICS</text>
+        </g>
+    </svg>

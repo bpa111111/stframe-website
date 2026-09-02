@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(10, 6)">
+            <!-- Thai Department Seal Circle -->
+            <circle cx="24" cy="24" r="22" fill="none" stroke="#b45309" stroke-width="3"/>
+            <circle cx="24" cy="24" r="17" fill="#b45309"/>
+            <polygon points="24,11 29,22 40,24 31,31 34,42 24,35 14,42 17,31 8,24 19,22" fill="#fef3c7"/>
+            <text x="54" y="24" font-family="'Prompt', 'Sarabun', sans-serif" font-weight="800" font-size="16" fill="#92400e">กรมศิลปากร</text>
+            <text x="55" y="36" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="8" fill="#78350f" letter-spacing="0.5">FINE ARTS DEPARTMENT</text>
+        </g>
+    </svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(15, 8)">
+            <text x="0" y="32" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="28" fill="#0f172a" letter-spacing="3">QSNCC</text>
+            <line x1="0" y1="38" x2="140" y2="38" stroke="#f97316" stroke-width="3"/>
+            <text x="0" y="47" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="6.5" fill="#64748b" letter-spacing="1">QUEEN SIRIKIT CONVENTION CENTER</text>
+        </g>
+    </svg>

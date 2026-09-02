@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(10, 8)">
+            <path d="M12 12 h160 M25 12 v24 M15 36 h20" stroke="#000" stroke-width="0" fill="none"/>
+            <text x="10" y="32" font-family="'Georgia', serif" font-weight="bold" font-style="italic" font-size="28" fill="#111827" letter-spacing="2">TRIUMPH</text>
+            <path d="M13 35 Q 85 45, 155 35" stroke="#dc2626" stroke-width="2.5" fill="none"/>
+        </g>
+    </svg>

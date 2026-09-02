@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(10, 10)">
+            <!-- 3D Cube Blocks -->
+            <path d="M18 6 L32 13 L18 20 L4 13 Z" fill="#f97316"/>
+            <path d="M4 15 L18 22 L18 35 L4 28 Z" fill="#ea580c"/>
+            <path d="M18 22 L32 15 L32 28 L18 35 Z" fill="#c2410c"/>
+            <text x="40" y="25" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="17" fill="#0f172a" letter-spacing="0.5">PRE-BUILT</text>
+            <text x="41" y="35" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="7.5" fill="#f97316" letter-spacing="1">PUBLIC COMPANY LIMITED</text>
+        </g>
+    </svg>

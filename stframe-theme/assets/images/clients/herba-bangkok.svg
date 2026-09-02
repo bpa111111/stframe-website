@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(10, 8)">
+            <path d="M18 4 C10 12, 10 26, 18 34 C26 26, 26 12, 18 4 Z" fill="#65a30d"/>
+            <text x="36" y="22" font-family="'Georgia', serif" font-weight="bold" font-size="16" fill="#3f6212">HERBA</text>
+            <text x="37" y="33" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="8.5" fill="#64748b">BANGKOK (EBRO FOODS)</text>
+        </g>
+    </svg>

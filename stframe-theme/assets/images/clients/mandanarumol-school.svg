@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" width="220" height="60">
+        <rect width="220" height="60" fill="transparent"/>
+        <g transform="translate(10, 8)">
+            <circle cx="18" cy="19" r="15" fill="#0284c7"/>
+            <path d="M12 24 L18 11 L24 24 Z" fill="#fff"/>
+            <text x="40" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13" fill="#0f172a">MANDANARUMOL</text>
+            <text x="41" y="33" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="8.5" fill="#0284c7">SCHOOL</text>
+        </g>
+    </svg>

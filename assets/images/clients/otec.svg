@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" width="180" height="60">
+        <rect width="180" height="60" fill="transparent"/>
+        <g transform="translate(10, 10)">
+            <circle cx="18" cy="18" r="16" fill="none" stroke="#2563eb" stroke-width="4"/>
+            <path d="M10 18h16 M18 10v16" stroke="#2563eb" stroke-width="3"/>
+            <text x="42" y="26" font-family="'Arial Black', sans-serif" font-weight="900" font-size="22" fill="#1e3a8a" letter-spacing="1">OTEC</text>
+        </g>
+    </svg>

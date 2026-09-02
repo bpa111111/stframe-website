@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+        <rect width="200" height="60" fill="transparent"/>
+        <g transform="translate(15, 6)">
+            <!-- CP Red Circle -->
+            <circle cx="22" cy="22" r="20" fill="#dc2626"/>
+            <circle cx="22" cy="22" r="14" fill="#fbbf24"/>
+            <text x="13" y="27" font-family="'Arial Black', sans-serif" font-weight="900" font-size="14" fill="#dc2626">CP</text>
+            <text x="50" y="29" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="24" fill="#dc2626" letter-spacing="1">CPF</text>
+        </g>
+    </svg>
