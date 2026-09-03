@@ -388,6 +388,9 @@
             </li>
             <li><a href="magazine.html" class="hover:text-orange-400 transition">ST Magazine</a></li>
             <li><a href="media.html" class="hover:text-orange-400 transition" data-th="วิดีโอและสื่อ (Media)" data-en="Media Center">วิดีโอและสื่อ (Media)</a></li>
+                        <li>
+              <button type="button" onclick="openCctvModal()" class="hover:text-orange-400 transition cursor-pointer text-left" data-th="นโยบายกล้องวงจรปิด (CCTV)" data-en="CCTV Privacy Policy">นโยบายกล้องวงจรปิด (CCTV)</button>
+            </li>
             <li><a href="contact.html#pdpa" class="hover:text-orange-400 transition" data-th="นโยบายความเป็นส่วนตัว (PDPA)" data-en="Privacy Policy">นโยบายความเป็นส่วนตัว (PDPA)</a></li>
           </ul>
         </div>

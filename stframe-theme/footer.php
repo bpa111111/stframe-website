@@ -59,6 +59,7 @@
           <ul class="space-y-2 text-xs">
             <li><a href="http://202.80.235.61:2026" target="_blank" class="text-orange-400 hover:underline"><i class="fas fa-server mr-1"></i> ERP Internal Portal</a></li>
             <li><a href="<?php echo esc_url( home_url( '/magazine/' ) ); ?>" class="hover:text-orange-400">ST Magazine</a></li>
+            <li><button type="button" onclick="openCctvModal()" class="hover:text-orange-400 transition cursor-pointer text-left">นโยบายกล้องวงจรปิด (CCTV)</button></li>
           </ul>
         </div>
 
