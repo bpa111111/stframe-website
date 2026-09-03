@@ -190,7 +190,7 @@ window.openProjectModal = function(data, imgSrc) {
 
   const currentLang = localStorage.getItem('stframe_lang') || 'th';
 
-  document.getElementById('modal-title').innerText = (currentLang === 'en' && data.titleEn) ? data.titleEn : data.title;
+  document.getElementById('modal-title').innerHTML = (currentLang === 'en' && data.titleEn) ? data.titleEn : data.title;
   document.getElementById('modal-client').innerText = data.client || '-';
   document.getElementById('modal-year').innerText = data.year || '-';
   document.getElementById('modal-location').innerText = (currentLang === 'en' && data.locEn) ? data.locEn : (data.location || '-');
