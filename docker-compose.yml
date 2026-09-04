@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mariadb:10.11
+    container_name: stframe_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: stframe_root_pass
+      MYSQL_DATABASE: stframe_wp
+      MYSQL_USER: stframe_user
+      MYSQL_PASSWORD: stframe_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wp_network
+
+  wordpress:
+    image: wordpress:latest
+    container_name: stframe_wordpress
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: stframe_wp
+      WORDPRESS_DB_USER: stframe_user
+      WORDPRESS_DB_PASSWORD: stframe_pass
+      WORDPRESS_DEBUG: 1
+    volumes:
+      # เชื่อมโฟลเดอร์ธีมตรงเข้า WordPress (แก้ไขโค้ดแล้วรีเฟรชดูผลได้ทันที)
+      - ./stframe-theme:/var/www/html/wp-content/themes/stframe-theme
+    depends_on:
+      - db
+    networks:
+      - wp_network
+
+volumes:
+  db_data:
+
+networks:
+  wp_network:

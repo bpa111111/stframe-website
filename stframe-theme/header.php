@@ -32,8 +32,7 @@
       }
     }
   </script>
-/assets/images/logo-icon.png">
-      <!-- Favicon -->
+  <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/logo-icon.png">
     <link rel="shortcut icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/logo-icon.png">

@@ -2,176 +2,420 @@
 /**
  * Template Name: Media Center
  *
- * @package ST_Frame_Theme
+ * @package ST_Frame
  */
 
-get_header();
-?>
+get_header(); ?>
 
-<!-- HERO SECTION (WITH HERO FACTORY BACKGROUND IMAGE) -->
-<section class="bg-slate-950 text-white py-16 lg:py-20 relative overflow-hidden">
-  <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
-  <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30 z-0"></div>
-  <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-  <div class="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-500/20 text-orange-400 text-xs font-semibold">
-        <i class="fas fa-play-circle"></i> <span>ST. FRAME MEDIA & VIDEO GALLERY</span>
-      </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
-        ศูนย์รวมวิดีโอและสื่อประชาสัมพันธ์
-      </h1>
-      <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed">
-        สัมผัสศักยภาพและกระบวนการทำงานระดับมาตรฐานสากล ผ่านวิดีโอแนะนำองค์กร นวัตกรรมโรงงาน 3D BIM และผลงานโครงสร้างเหล็กระดับประวัติศาสตร์
-      </p>
-    </div>
-  </div>
-</section>
+<main class="flex-grow">
 
-<!-- MAIN CONTENT (DARK CINEMATIC THEME) -->
-<main class="flex-grow bg-slate-950 py-16">
-  <div class="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- HERO BANNER (WITH REAL HERO FACTORY BACKGROUND IMAGE) -->
+    <section class="bg-slate-950 text-white py-16 lg:py-20 relative overflow-hidden">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30 z-0"></div>
+      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div class="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center space-x-2 text-xs text-slate-400 mb-6 font-medium">
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-orange-400 transition flex items-center gap-1">
+            <i class="fas fa-home"></i> <span data-th="หน้าแรก" data-en="Home">หน้าแรก</span>
+          </a>
+          <span>/</span>
+          <span class="text-orange-500 font-semibold" data-th="วิดีโอและสื่อประชาสัมพันธ์ (Media Center)" data-en="Media Center">วิดีโอและสื่อประชาสัมพันธ์ (Media Center)</span>
+        </div>
 
-    <!-- FEATURED VIDEO SHOWCASE CARD -->
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl space-y-6 relative overflow-hidden">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
-        <div class="space-y-1.5">
-          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-500 bg-orange-500/10 px-2.5 py-1 rounded-md border border-orange-500/20">
-            <i class="fas fa-play-circle"></i> <span>กำลังเล่น (Now Playing)</span>
+        <div class="max-w-3xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-500/20 text-orange-400 text-xs font-semibold whitespace-nowrap">
+            <i class="fas fa-play-circle"></i> <span data-th="ศูนย์รวมวิดีโอและมัลติมีเดีย" data-en="Video & Multimedia Center">ศูนย์รวมวิดีโอและมัลติมีเดีย</span>
           </div>
-          <h2 id="featured-video-title" class="text-2xl sm:text-3xl font-bold font-heading text-white leading-tight">
-            ST Company Profile
-          </h2>
-          <p id="featured-video-desc" class="text-xs sm:text-sm text-slate-400">
-            ทำความรู้จัก ST. Frame & Truss ผู้เชี่ยวชาญด้านงานก่อสร้างและแปรรูปโครงสร้างเหล็กครบวงจร มาตรฐาน ISO 9001 & ISO 45001
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight" data-th="วิดีโอและสื่อประชาสัมพันธ์ (Media Gallery)" data-en="Video & Multimedia Gallery">
+            วิดีโอและสื่อประชาสัมพันธ์ (Media Gallery)
+          </h1>
+          <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed" data-th="สัมผัสศักยภาพและกระบวนการทำงานระดับมาตรฐานสากล ผ่านวิดีโอแนะนำองค์กร นวัตกรรมโรงงาน 3D BIM และผลงานโครงสร้างเหล็กระดับประวัติศาสตร์" data-en="Explore our engineering capabilities, modern Ayutthaya fabrication facility, 3D BIM technology, and landmark project documentaries.">
+            สัมผัสศักยภาพและกระบวนการทำงานระดับมาตรฐานสากล ผ่านวิดีโอ<span data-th="แนะนำองค์กร" data-en="Corporate Video">แนะนำองค์กร</span> นวัตกรรมโรงงาน 3D BIM และผลงานโครงสร้างเหล็กระดับประวัติศาสตร์
           </p>
         </div>
 
-        <div class="flex items-center gap-3 shrink-0">
-          <a id="direct-yt-btn" href="https://www.youtube.com/watch?v=sETkvTTVuO0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 rounded-xl text-xs font-semibold transition">
-            <i class="fab fa-youtube text-red-500 text-base"></i>
-            <span>เปิดดูบน YouTube</span>
-          </a>
-          <a href="https://www.youtube.com/@ST.FRAMETRUSS" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-semibold shadow-lg hover:shadow-red-600/30 transition">
-            <i class="fas fa-bell text-xs"></i>
-            <span>ติดตามช่อง</span>
-          </a>
+      </div>
+    </section>
+
+    <!-- CONTENT SECTION (DARK CINEMATIC THEME) -->
+    <section class="py-16 bg-slate-950">
+      <div class="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+        <!-- FEATURED VIDEO CINEMA PLAYER -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl space-y-6 relative overflow-hidden">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+            <div class="space-y-1.5">
+              <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-500 bg-orange-500/10 px-2.5 py-1 rounded-md border border-orange-500/20">
+                <i class="fas fa-play-circle"></i> <span data-th="กำลังเล่น (Now Playing)" data-en="Now Playing">กำลังเล่น (Now Playing)</span>
+              </div>
+              <h2 id="featured-video-title" class="text-2xl sm:text-3xl font-bold font-heading text-white leading-tight">
+                ST Company Profile
+              </h2>
+              <p id="featured-video-desc" class="text-xs sm:text-sm text-slate-400">
+                <span data-th="ทำความรู้จัก ST. Frame & Truss ผู้เชี่ยวชาญด้านงานก่อสร้างและแปรรูปโครงสร้างเหล็กครบวงจร มาตรฐาน ISO 9001 & ISO 45001" data-en="Discover ST. Frame & Truss, turnkey steel structure engineering & fabrication specialist with ISO 9001 & ISO 45001 certifications.">ทำความรู้จัก ST. Frame & Truss ผู้เชี่ยวชาญด้านงานก่อสร้างและแปรรูปโครงสร้างเหล็กครบวงจร มาตรฐาน ISO 9001 & ISO 45001</span>
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <a id="direct-yt-btn" href="https://www.youtube.com/watch?v=sETkvTTVuO0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 rounded-xl text-xs font-semibold transition">
+                <i class="fab fa-youtube text-red-500 text-base"></i>
+                <span data-th="เปิดดูบน YouTube" data-en="Open in YouTube">เปิดดูบน YouTube</span>
+              </a>
+              <a href="https://www.youtube.com/@ST.FRAMETRUSS" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-semibold shadow-lg hover:shadow-red-600/30 transition">
+                <i class="fas fa-bell text-xs"></i>
+                <span data-th="ติดตามช่อง" data-en="Subscribe">ติดตามช่อง</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 16:9 Responsive Video Iframe Container -->
+          <div id="video-container" class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-black group">
+            <iframe id="main-featured-iframe" 
+                    class="absolute inset-0 w-full h-full" 
+                    src="https://www.youtube.com/embed/sETkvTTVuO0" 
+                    title="ST Company Profile" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+            </iframe>
+            
+            <!-- Fallback for file:// protocol -->
+            <a id="file-protocol-fallback" href="https://www.youtube.com/watch?v=sETkvTTVuO0" target="_blank" class="hidden absolute inset-0 w-full h-full bg-slate-900 flex flex-col items-center justify-center text-center p-6 group-hover:bg-slate-800 transition-colors z-10 cursor-pointer text-white no-underline">
+                <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                    <svg class="w-10 h-10 ml-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                </div>
+                <h3 data-th="เล่นวีดิโอบน YouTube" data-en="Watch on YouTube" class="text-2xl font-bold mb-2">เล่นวีดิโอบน YouTube</h3>
+                <p data-th="ขณะนี้คุณกำลังเปิดไฟล์ผ่านเครื่องโดยตรง (Local File) ระบบของ YouTube ไม่อนุญาตให้เล่นวิดีโอในหน้านี้ กรุณากดเพื่อดูบน YouTube" data-en="You are viewing via local file protocol. YouTube embedding requires web server. Please click to view directly on YouTube." class="text-slate-400 max-w-md">ขณะนี้คุณกำลังเปิดไฟล์ผ่านเครื่องโดยตรง (Local File) ระบบของ YouTube ไม่อนุญาตให้เล่นวิดีโอในหน้านี้ กรุณากดเพื่อดูบน YouTube</p>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-black">
-        <iframe id="main-featured-iframe" 
-                class="absolute inset-0 w-full h-full" 
-                src="https://www.youtube.com/embed/sETkvTTVuO0" 
-                title="ST Company Profile" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-        </iframe>
-      </div>
-    </div>
+        <!-- CATEGORY FILTER TABS -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          <button onclick="filterVideos('all')" class="video-tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-orange-600 text-white shadow-md shadow-orange-500/20" data-cat="all">
+            <i class="fas fa-th-large mr-1.5"></i> <span data-th="ทั้งหมด" data-en="All Videos">ทั้งหมด</span>
+          </button>
+          <button onclick="filterVideos('corporate')" class="video-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 shadow-sm" data-cat="corporate">
+            <i class="fas fa-building mr-1.5 text-orange-500"></i> <span data-th="แนะนำองค์กรและโรงงาน" data-en="Corporate & Facility">แนะนำองค์กรและโรงงาน</span>
+          </button>
+          <button onclick="filterVideos('tech')" class="video-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 shadow-sm" data-cat="tech">
+            <i class="fas fa-cubes mr-1.5 text-orange-500"></i> <span data-th="เทคโนโลยี 3D BIM" data-en="3D BIM Technology">เทคโนโลยี 3D BIM</span>
+          </button>
+          <button onclick="filterVideos('landmark')" class="video-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 shadow-sm" data-cat="landmark">
+            <i class="fas fa-monument mr-1.5 text-orange-500"></i> <span data-th="โครงการประวัติศาสตร์" data-en="Landmark Projects">โครงการประวัติศาสตร์</span>
+          </button>
+          <button onclick="filterVideos('csr')" class="video-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 shadow-sm" data-cat="csr">
+            <i class="fas fa-graduation-cap mr-1.5 text-orange-500"></i> <span data-th="กิจกรรมและ CSR" data-en="CSR & Academic">กิจกรรมและ CSR</span>
+          </button>
+        </div>
 
-    <!-- VIDEO GRID CARDS (DARK STEEL CARDS) -->
-    <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- VIDEO GRID CARDS (DARK STEEL CARDS) -->
+        <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          
+          <!-- Video 1: ST Company Profile -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="corporate">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('sETkvTTVuO0', 'ST Company Profile', 'Corporate Profile Video - ST. Frame & Truss')">
+              <img src="https://i.ytimg.com/vi/sETkvTTVuO0/hqdefault.jpg" alt="ST Company Profile" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="แนะนำองค์กร" data-en="Corporate Video">แนะนำองค์กร</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">
+                  ST Company Profile
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="วิดีโอแนะนำองค์กร ประวัติความเป็นมากว่า 30 ปี ศักยภาพโรงงานอยุธยา และมาตรฐานการดำเนินงานระดับสากล" data-en="Corporate profile introducing over 30 years of excellence, modern Ayutthaya facility, and international engineering standards.">
+                  วิดีโอ<span data-th="แนะนำองค์กร" data-en="Corporate Video">แนะนำองค์กร</span> ประวัติความเป็นมากว่า 30 ปี ศักยภาพโรงงานอยุธยา และมาตรฐานการดำเนินงานระดับสากล
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> ST. FRAME & TRUSS</span>
+                <button onclick="playVideo('sETkvTTVuO0', 'ST Company Profile', 'Corporate Profile Video - ST. Frame & Truss')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2: ST.FRAME BIM FACTORY -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="tech">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('lE9FgQ_3iSQ', 'ST.FRAME BIM FACTORY', 'กระบวนการทำงานด้วยระบบ 3D BIM เชื่อมโยงสู่โรงงานแปรรูปโครงสร้างเหล็กอยุธยา')">
+              <img src="https://i.ytimg.com/vi/lE9FgQ_3iSQ/hqdefault.jpg" alt="ST.FRAME BIM FACTORY" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="เทคโนโลยี BIM" data-en="BIM Technology">เทคโนโลยี BIM</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">
+                  ST.FRAME BIM FACTORY
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="เจาะลึกการประยุกต์ใช้โมเดล 3D BIM ในการบริหารการผลิตและการตัดประกอบโครงสร้างเหล็กในโรงงานแบบไร้รอยต่อ" data-en="In-depth showcase of 3D BIM modeling integrated into automated fabrication and shop-floor manufacturing in Ayutthaya.">
+                  เจาะลึกการประยุกต์ใช้โมเดล 3D BIM ในการบริหารการผลิตและการตัดประกอบโครงสร้างเหล็กในโรงงานแบบไร้รอยต่อ
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> <span data-th="เอสที เฟรมแอนด์ทรัส" data-en="ST. Frame & Truss">เอสที เฟรมแอนด์ทรัส</span></span>
+                <button onclick="playVideo('lE9FgQ_3iSQ', 'ST.FRAME BIM FACTORY', 'กระบวนการทำงานด้วยระบบ 3D BIM เชื่อมโยงสู่โรงงานแปรรูปโครงสร้างเหล็กอยุธยา')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3: <span data-th="โครงสร้างเหล็ก พระเมรุมาศ ร.9" data-en="Royal Crematorium Steel Structure King Rama IX">โครงสร้างเหล็ก พระเมรุมาศ ร.9</span> -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="landmark">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('uNZg6fVNbRY', 'โครงสร้างเหล็ก พระเมรุมาศ พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดช', 'ผลงานประวัติศาสตร์และความภาคภูมิใจสูงสุดของ ST. Frame & Truss')">
+              <img src="https://i.ytimg.com/vi/uNZg6fVNbRY/hqdefault.jpg" alt="โครงสร้างเหล็ก พระเมรุมาศ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="โครงการประวัติศาสตร์" data-en="Historic Project">โครงการประวัติศาสตร์</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">
+                  <span data-th="โครงสร้างเหล็ก พระเมรุมาศ ร.9" data-en="Royal Crematorium Steel Structure King Rama IX">โครงสร้างเหล็ก พระเมรุมาศ ร.9</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="บันทึกประวัติศาสตร์งานวิศวกรรมโครงสร้างเหล็กพระเมรุมาศ ความภาคภูมิใจสูงสุดของคณะผู้บริหารและพนักงานทุกคน" data-en="Historical engineering documentary on the Royal Crematorium steel structure fabrication — the highest pride of ST. Frame & Truss.">
+                  บันทึกประวัติศาสตร์งาน<span data-th="วิศวกรรมโครงสร้าง" data-en="Structural Eng.">วิศวกรรมโครงสร้าง</span>เหล็กพระเมรุมาศ ความภาคภูมิใจสูงสุดของคณะผู้บริหารและพนักงานทุกคน
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> <span data-th="เอสที เฟรมแอนด์ทรัส" data-en="ST. Frame & Truss">เอสที เฟรมแอนด์ทรัส</span></span>
+                <button onclick="playVideo('uNZg6fVNbRY', 'โครงสร้างเหล็ก พระเมรุมาศ พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดช', 'ผลงานประวัติศาสตร์และความภาคภูมิใจสูงสุดของ ST. Frame & Truss')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 4: Design, Fabrication & Erection -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="corporate">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('neZdJDrwJRQ', 'Design, Fabrication and Erection of Steel Structure', 'กระบวนการออกแบบ แปรรูป และติดตั้งโครงสร้างเหล็กครบวงจร')">
+              <img src="https://i.ytimg.com/vi/neZdJDrwJRQ/hqdefault.jpg" alt="Design Fabrication Erection" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="บริการครบวงจร" data-en="Full Services">บริการครบวงจร</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">
+                  Design, Fabrication and Erection of Steel Structure
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="แสดงขั้นตอนการทำงานตั้งแต่วิศวกรรมออกแบบ การผลิตในโรงงาน จนถึงการยกติดตั้งโครงสร้างเหล็กหน้างานก่อสร้างจริง" data-en="Comprehensive video of turnkey steel solutions from engineering design to factory fabrication and on-site erection.">
+                  แสดงขั้นตอนการทำงานตั้งแต่วิศวกรรมออกแบบ การผลิตในโรงงาน จนถึงการยกติดตั้งโครงสร้างเหล็กหน้างานก่อสร้างจริง
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> BIMadmin Stframe</span>
+                <button onclick="playVideo('neZdJDrwJRQ', 'Design, Fabrication and Erection of Steel Structure', 'กระบวนการออกแบบ แปรรูป และติดตั้งโครงสร้างเหล็กครบวงจร')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 5: ST.Frame & Truss Specialist -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="tech">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('HjnkekAY7Ec', 'ST.Frame & Truss - Engineering BIM Specialist', 'Advanced Structural Engineering Management')">
+              <img src="https://i.ytimg.com/vi/HjnkekAY7Ec/hqdefault.jpg" alt="ST.Frame & Truss Specialist" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="วิศวกรรมโครงสร้าง" data-en="Structural Eng.">วิศวกรรมโครงสร้าง</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">
+                  ST.Frame & Truss - Engineering Specialist
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="การประยุกต์ใช้ซอฟต์แวร์วิศวกรรมขั้นสูง และการควบคุมคุณภาพตามมาตรฐานสากล AWS และ ISO" data-en="Advanced structural software implementation and rigorous QC procedures aligned with international AWS and ISO standards.">
+                  การประยุกต์ใช้ซอฟต์แวร์วิศวกรรมขั้นสูง และการควบคุมคุณภาพตามมาตรฐานสากล AWS และ ISO
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> BIMadmin Stframe</span>
+                <button onclick="playVideo('HjnkekAY7Ec', 'ST.Frame & Truss - Engineering BIM Specialist', 'Advanced Structural Engineering Management')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 6: CSR สัญจรสถาบันการศึกษา -->
+          <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg" data-category="csr">
+            <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('mhCoKVwUhTE', 'ST FRAME สัญจรสถาบันการศึกษาภาคตะวันออกเฉียงเหนือ', 'กิจกรรม CSR ถ่ายทอดความรู้วิศวกรรมโครงสร้างเหล็กแก่นักศึกษา')">
+              <img src="https://i.ytimg.com/vi/mhCoKVwUhTE/hqdefault.jpg" alt="ST FRAME สัญจรสถาบันการศึกษา" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
+                <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
+                  <i class="fas fa-play ml-1"></i>
+                </div>
+              </div>
+              <span class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] font-semibold px-2 py-1 rounded backdrop-blur-sm">
+                <i class="fab fa-youtube text-red-500 mr-1"></i> YouTube
+              </span>
+              <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span data-th="CSR & การศึกษา" data-en="CSR & Education">CSR & การศึกษา</span>
+              </span>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug" data-th="ST FRAME สัญจรสถาบันการศึกษาภาคตะวันออกเฉียงเหนือ" data-en="ST FRAME University Outreach Roadshow - Northeastern Region">
+                  ST FRAME สัญจรสถาบันการศึกษาภาคตะวันออกเฉียงเหนือ
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2" data-th="โครงการบรรยายพิเศษและแบ่งปันประสบการณ์งานวิศวกรรมโครงสร้างเหล็กจริงแก่นักศึกษาและคณาจารย์ในมหาวิทยาลัย" data-en="Academic roadshow and engineering knowledge-sharing sessions with university engineering students across northeastern Thailand.">
+                  โครงการบรรยายพิเศษและแบ่งปันประสบการณ์งาน<span data-th="วิศวกรรมโครงสร้าง" data-en="Structural Eng.">วิศวกรรมโครงสร้าง</span>เหล็กจริงแก่นักศึกษาและคณาจารย์ในมหาวิทยาลัย
+                </p>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                <span class="whitespace-nowrap"><i class="fas fa-user-circle text-slate-400 mr-1"></i> <span data-th="เอสที เฟรมแอนด์ทรัส" data-en="ST. Frame & Truss">เอสที เฟรมแอนด์ทรัส</span></span>
+                <button onclick="playVideo('mhCoKVwUhTE', 'ST FRAME สัญจรสถาบันการศึกษาภาคตะวันออกเฉียงเหนือ', 'กิจกรรม CSR ถ่ายทอดความรู้วิศวกรรมโครงสร้างเหล็กแก่นักศึกษา')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                  <span data-th="เล่นวิดีโอ" data-en="Play Video">เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA BANNER: CONNECTED TO ST MAGAZINE & PROJECTS -->
+        <div class="bg-gradient-to-r from-orange-950/60 via-slate-900 to-slate-900 border border-orange-500/30 rounded-3xl p-8 sm:p-12 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="space-y-3 text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-500/20 text-orange-400 text-xs font-semibold backdrop-blur-sm whitespace-nowrap">
+              <i class="fas fa-book-open"></i> <span>ST MAGAZINE DIGITAL ARCHIVE</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold font-heading text-white" data-th="ติดตามผลงานและองค์ความรู้เพิ่มเติมใน ST Magazine" data-en="Explore More Articles & Insights in ST Magazine">
+              ติดตามผลงานและองค์ความรู้เพิ่มเติมใน ST Magazine
+            </h3>
+            <p class="text-slate-300 text-sm max-w-xl" data-th="อ่านวารสารวิศวกรรมโครงสร้างเหล็ก ST Magazine ฉบับดิจิทัล E-Book ย้อนหลังกว่า 40 ฉบับ พร้อมบทความเทคนิควิศวกรรมเจาะลึก" data-en="Browse through 40+ digital editions of ST Magazine, featuring technical insights, project spotlights, and engineering trends.">
+              อ่านวารสาร<span data-th="วิศวกรรมโครงสร้าง" data-en="Structural Eng.">วิศวกรรมโครงสร้าง</span>เหล็ก ST Magazine ฉบับดิจิทัล E-Book ย้อนหลังกว่า 40 ฉบับ พร้อมบทความเทคนิควิศวกรรมเจาะลึก
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0">
+            <a href="<?php echo esc_url( home_url( '/magazine/' ) ); ?>" class="px-6 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-orange-500/30 transition flex items-center gap-2 text-sm">
+              <i class="fas fa-book"></i>
+              <span data-th="อ่าน ST Magazine" data-en="Read ST Magazine">อ่าน ST Magazine</span>
+            </a>
+            <a href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl border border-slate-700 transition flex items-center gap-2 text-sm">
+              <i class="fas fa-project-diagram"></i>
+              <span data-th="ชมผลงานโครงการ" data-en="View Projects">ชมผลงานโครงการ</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+<!-- JAVASCRIPT LOGIC -->
+  
+  <script>
+    // YouTube Error 153 File Protocol Fallback
+    const isFileProtocol = window.location.protocol === 'file:';
+    
+    if (isFileProtocol) {
+      document.getElementById('main-featured-iframe').style.display = 'none';
+      document.getElementById('file-protocol-fallback').classList.remove('hidden');
+      document.getElementById('file-protocol-fallback').classList.add('flex');
+    }
+
+    // Video player switcher
+    function playVideo(videoId, title, desc) {
+      const iframe = document.getElementById('main-featured-iframe');
+      const fallback = document.getElementById('file-protocol-fallback');
+      const titleEl = document.getElementById('featured-video-title');
+      const descEl = document.getElementById('featured-video-desc');
+      const ytBtn = document.getElementById('direct-yt-btn');
+
+      if (isFileProtocol) {
+        fallback.href = `https://www.youtube.com/watch?v=${videoId}`;
+      } else {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
       
-      <!-- Video 1 -->
-      <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg">
-        <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('sETkvTTVuO0', 'ST Company Profile', 'ทำความรู้จัก ST. Frame & Truss ผู้เชี่ยวชาญด้านงานก่อสร้างและแปรรูปโครงสร้างเหล็กครบวงจร')">
-          <img src="https://i.ytimg.com/vi/sETkvTTVuO0/hqdefault.jpg" alt="ST Company Profile" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
-            <div class="w-14 h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
-              <i class="fas fa-play ml-1"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">แนะนำองค์กร</span>
-        </div>
-        <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">ST Company Profile</h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2">วิดีโอแนะนำองค์กร ประวัติความเป็นมากว่า 30 ปี ศักยภาพโรงงานอยุธยา และมาตรฐานการดำเนินงานระดับสากล</p>
-          </div>
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-            <span><i class="fas fa-user-circle text-slate-400 mr-1"></i> ST. FRAME & TRUSS</span>
-            <button onclick="playVideo('sETkvTTVuO0', 'ST Company Profile', 'ทำความรู้จัก ST. Frame & Truss ผู้เชี่ยวชาญด้านงานก่อสร้างและแปรรูปโครงสร้างเหล็กครบวงจร')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
-              <span>เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      if (titleEl) titleEl.innerText = title;
+      if (descEl) descEl.innerText = desc;
+      if (ytBtn) ytBtn.href = `https://www.youtube.com/watch?v=${videoId}`;
 
-      <!-- Video 2 -->
-      <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg">
-        <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('lE9FgQ_3iSQ', 'ST.FRAME BIM FACTORY', 'กระบวนการทำงานด้วยระบบ 3D BIM เชื่อมโยงสู่โรงงานแปรรูปโครงสร้างเหล็กอยุธยา')">
-          <img src="https://i.ytimg.com/vi/lE9FgQ_3iSQ/hqdefault.jpg" alt="ST.FRAME BIM FACTORY" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
-            <div class="w-14 h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
-              <i class="fas fa-play ml-1"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">เทคโนโลยี BIM</span>
-        </div>
-        <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">ST.FRAME BIM FACTORY</h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2">เจาะลึกการประยุกต์ใช้โมเดล 3D BIM ในการบริหารการผลิตและการตัดประกอบโครงสร้างเหล็กในโรงงานแบบไร้รอยต่อ</p>
-          </div>
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-            <span><i class="fas fa-user-circle text-slate-400 mr-1"></i> เอสที เฟรมแอนด์ทรัส</span>
-            <button onclick="playVideo('lE9FgQ_3iSQ', 'ST.FRAME BIM FACTORY', 'กระบวนการทำงานด้วยระบบ 3D BIM เชื่อมโยงสู่โรงงานแปรรูปโครงสร้างเหล็กอยุธยา')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
-              <span>เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      // Smooth scroll up to player
+      const playerContainer = document.getElementById('video-container');
+      if (playerContainer) {
+        playerContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
 
-      <!-- Video 3 -->
-      <div class="video-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-orange-500/80 transition duration-300 flex flex-col group shadow-lg">
-        <div class="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer" onclick="playVideo('uNZg6fVNbRY', 'โครงสร้างเหล็ก พระเมรุมาศ พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดช', 'ผลงานประวัติศาสตร์และความภาคภูมิใจสูงสุดของ ST. Frame & Truss')">
-          <img src="https://i.ytimg.com/vi/uNZg6fVNbRY/hqdefault.jpg" alt="โครงสร้างเหล็ก พระเมรุมาศ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition flex items-center justify-center">
-            <div class="w-14 h-14 rounded-full bg-orange-600/95 group-hover:bg-orange-500 text-white flex items-center justify-center text-xl shadow-xl transform group-hover:scale-110 transition duration-300">
-              <i class="fas fa-play ml-1"></i>
-            </div>
-          </div>
-          <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">โครงการประวัติศาสตร์</span>
-        </div>
-        <div class="p-6 flex flex-col justify-between flex-grow space-y-3">
-          <div>
-            <h3 class="font-bold text-base sm:text-lg text-white font-heading group-hover:text-orange-400 transition leading-snug">โครงสร้างเหล็ก พระเมรุมาศ ร.9</h3>
-            <p class="text-xs sm:text-sm text-slate-400 mt-2 line-clamp-2">บันทึกประวัติศาสตร์งานวิศวกรรมโครงสร้างเหล็กพระเมรุมาศ ความภาคภูมิใจสูงสุดของคณะผู้บริหารและพนักงานทุกคน</p>
-          </div>
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-            <span><i class="fas fa-user-circle text-slate-400 mr-1"></i> เอสที เฟรมแอนด์ทรัส</span>
-            <button onclick="playVideo('uNZg6fVNbRY', 'โครงสร้างเหล็ก พระเมรุมาศ พระบาทสมเด็จพระปรมินทรมหาภูมิพลอดุลยเดช', 'ผลงานประวัติศาสตร์และความภาคภูมิใจสูงสุดของ ST. Frame & Truss')" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
-              <span>เล่นวิดีโอ</span> <i class="fas fa-arrow-right text-[10px]"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+    // Filter categories
+    function filterVideos(category) {
+      const cards = document.querySelectorAll('.video-card');
+      const buttons = document.querySelectorAll('.video-tab-btn');
 
-    </div>
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.add('bg-orange-600', 'text-white', 'shadow-md', 'shadow-orange-500/20');
+          btn.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+        } else {
+          btn.classList.remove('bg-orange-600', 'text-white', 'shadow-md', 'shadow-orange-500/20');
+          btn.classList.add('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+        }
+      });
 
-  </div>
-</main>
-
-<script>
-function playVideo(videoId, title, desc) {
-  const iframe = document.getElementById('main-featured-iframe');
-  const titleEl = document.getElementById('featured-video-title');
-  const descEl = document.getElementById('featured-video-desc');
-  const ytBtn = document.getElementById('direct-yt-btn');
-
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  if (titleEl) titleEl.innerText = title;
-  if (descEl) descEl.innerText = desc;
-  if (ytBtn) ytBtn.href = `https://www.youtube.com/watch?v=${videoId}`;
-
-  const playerCard = document.getElementById('main-featured-iframe');
-  if (playerCard) {
-    playerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-}
-</script>
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+  </script>
 
 <?php get_footer(); ?>

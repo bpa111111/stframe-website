@@ -1,155 +1,19 @@
-<!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-th="ร่วมงานกับเรา | ST. Frame & Truss Co., Ltd." data-en="Careers & Join Our Team | ST. Frame & Truss Co., Ltd.">ร่วมงานกับเรา | ST. Frame & Truss Co., Ltd.</title>
-  <meta name="description" content="ร่วมเป็นส่วนหนึ่งของทีมงานวิศวกรโครงสร้างเหล็กชั้นนำ บริษัท เอส.ที. เฟรม แอนด์ ทรัส จำกัด ณ โรงงานอยุธยาและไซต์งานทั่วประเทศ">
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/logo-icon.png">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="assets/images/logo-icon.png">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy: '#0B192C',
-              dark: '#0F172A',
-              slate: '#1E293B',
-              orange: '#FF6500',
-              'orange-hover': '#E05600',
-              gold: '#F59E0B',
-              light: '#F8FAFC'
-            }
-          },
-          fontFamily: {
-            sans: ['Prompt', 'Inter', 'sans-serif'],
-            heading: ['Kanit', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+<?php
+/**
+ * Template Name: Careers
+ *
+ * @package ST_Frame
+ */
 
-  <!-- TOP BAR -->
-  <div class="bg-slate-950 text-slate-300 text-xs py-2 border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center space-x-6">
-        <span class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-orange-500"></i> <span data-th="บางปะหัน พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">บางปะหัน พระนครศรีอยุธยา</span></span>
-        <span class="flex items-center gap-1.5 whitespace-nowrap"><i class="fas fa-phone-alt text-orange-500"></i> 035-779-554, 035-779-555</span>
-        <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap"><i class="fas fa-envelope text-orange-500"></i> stframe_factory@stframe.com</span>
-      </div>
-      <div class="flex items-center space-x-4">
-        <a href="http://202.80.235.61:2026" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-orange-400 px-2.5 py-1 rounded transition text-xs font-medium flex items-center gap-1">
-          <i class="fas fa-server"></i> ERP System
-        </a>
-        <div class="inline-flex rounded-md shadow-sm border border-slate-700 overflow-hidden bg-slate-900 p-0.5">
-          <button class="lang-btn px-2 py-0.5 rounded text-xs transition active" data-lang="th">TH</button>
-          <button class="lang-btn px-2 py-0.5 rounded text-xs transition" data-lang="en">EN</button>
-        </div>
-      </div>
-    </div>
-  </div>
+get_header(); ?>
 
-  <!-- NAVBAR -->
-  <header id="main-header" class="sticky top-0 z-50 bg-slate-950 backdrop-blur-md border-b border-slate-800/80 py-3">
-    <div class="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-      <!-- LOGO -->
-      <a href="index.html" class="flex items-center gap-3 group shrink-0">
-        <div class="h-11 w-11 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0 group-hover:scale-105 transition transform">
-          <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-        </div>
-        <div class="flex flex-col">
-          <span class="text-xl font-bold tracking-tight text-white font-heading leading-tight group-hover:text-orange-400 transition">ST. FRAME & TRUSS</span>
-          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-medium whitespace-nowrap">Steel Structure Specialist Since 1992</span>
-        </div>
-      </a>
-
-      <!-- DESKTOP NAVIGATION MENU & CTA -->
-      <div class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-8">
-        <nav class="flex items-center gap-0.5 xl:gap-1 text-[13px] xl:text-[13.5px] 2xl:text-sm">
-          <a href="index.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
-          <a href="about.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a>
-          <a href="services.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a>
-          <a href="projects.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a>
-          <a href="technology.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a>
-          <a href="magazine.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ST Magazine" data-en="ST Magazine">ST Magazine</a>
-          <a href="media.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="Media" data-en="Media">Media</a>
-          <a href="careers.html" class="text-orange-500 font-semibold px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a>
-        </nav>
-
-        <!-- HEADER CTA BUTTON WITH SEPARATOR -->
-        <div class="pl-3 xl:pl-5 border-l border-slate-800">
-          <a href="contact.html" class="bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-semibold px-4 xl:px-5 py-2.5 rounded-xl shadow-md hover:shadow-orange-500/25 text-xs xl:text-sm transition transform hover:-translate-y-0.5 flex items-center gap-2 whitespace-nowrap shrink-0">
-            <i class="fas fa-paper-plane text-xs"></i>
-            <span data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- MOBILE HAMBURGER BUTTON -->
-      <div class="lg:hidden flex items-center">
-        <button id="mobile-menu-btn" type="button" class="text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle menu">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- MOBILE MENU DRAWER -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950 backdrop-blur-lg hidden flex flex-col justify-between p-6 overflow-y-auto">
-    <div>
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0">
-            <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-          </div>
-          <span class="text-lg font-bold text-white font-heading">ST. FRAME & TRUSS</span>
-        </div>
-        <button id="close-mobile-menu" class="text-slate-400 hover:text-white p-2">
-          <i class="fas fa-times text-2xl"></i>
-        </button>
-      </div>
-
-      <nav class="mt-6 flex flex-col space-y-3">
-        <a href="index.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
-        <a href="about.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a>
-        <a href="services.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a>
-        <a href="projects.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a>
-        <a href="technology.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a>
-        <a href="magazine.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="ST Magazine" data-en="ST Magazine">ST Magazine</a>
-        <a href="media.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="Media" data-en="Media">Media</a>
-        <a href="careers.html" class="text-orange-500 font-semibold py-2 text-base transition border-b border-slate-800/60" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a>
-      </nav>
-    </div>
-
-    <div class="space-y-4 pt-6 border-t border-slate-800">
-      <a href="contact.html" class="w-full text-center block bg-orange-600 hover:bg-orange-500 text-white font-semibold py-3 rounded-lg shadow-lg">
-        <span data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</span>
-      </a>
-      <div class="text-center text-xs text-slate-400">
-        <i class="fas fa-phone mr-1 text-orange-500"></i> 035-779-554 | 035-779-555
-      </div>
-    </div>
-  </div>
+</div>
 
   <main class="flex-grow">
     
     <!-- PAGE HERO BANNER -->
     <section class="bg-slate-950 text-white py-16 lg:py-20 relative overflow-hidden">
-      <img src="assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
       <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30 z-0"></div>
       <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -639,87 +503,8 @@
   </main>
 
   <!-- FOOTER -->
-  <!-- GLOBAL FOOTER -->
-  <footer class="bg-slate-950 text-slate-400 text-sm border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-        
-        <!-- Col 1: Company Profile -->
-        <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0">
-              <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-            </div>
-            <span class="text-lg font-bold text-white font-heading">ST. FRAME & TRUSS CO., LTD.</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed" data-th="บริษัท เอส.ที. เฟรม แอนด์ ทรัส จำกัด ผู้เชี่ยวชาญด้านงานออกแบบ ผลิต และติดตั้งโครงสร้างเหล็ก หลังคาโครงถัก และงานวิศวกรรมโครงสร้างครบวงจรตั้งแต่ปี พ.ศ. 2535" data-en="ST. Frame & Truss Co., Ltd. is a turnkey steel structure contractor specializing in engineering design, BIM Tekla, fabrication, and erection since 1992.">
-            บริษัท เอส.ที. เฟรม แอนด์ ทรัส จำกัด ผู้เชี่ยวชาญด้านงานออกแบบ ผลิต และติดตั้งโครงสร้างเหล็ก หลังคาโครงถัก และงานวิศวกรรมโครงสร้างครบวงจรตั้งแต่ปี พ.ศ. 2535
-          </p>
-          <div class="pt-2 text-xs space-y-1.5 text-slate-300">
-            <p class="flex items-start gap-1.5"><i class="fas fa-map-marker-alt text-orange-500 w-4 shrink-0 mt-0.5"></i> <span class="leading-relaxed" data-th="29/4, 29/15, 29/14, 29/17 หมู่ 3 ต.โพธิ์สามต้น<br>อ.บางปะหัน จ.พระนครศรีอยุธยา 13220" data-en="29/4, 29/15, 29/14, 29/17 Moo 3, Pho Sam Ton,<br>Bang Pahan, Phra Nakhon Si Ayutthaya 13220, Thailand">29/4, 29/15, 29/14, 29/17 หมู่ 3 ต.โพธิ์สามต้น<br>อ.บางปะหัน จ.พระนครศรีอยุธยา 13220</span></p>
-            <p><i class="fas fa-phone text-orange-500 w-4"></i> 035-779-554, 035-779-555</p>
-            <p><i class="fas fa-envelope text-orange-500 w-4"></i> stframe_factory@stframe.com</p>
-            <p><i class="fas fa-clock text-orange-500 w-4"></i> <span data-th="เวลาทำการ: จันทร์ - เสาร์ 08:00 - 17:00" data-en="Working Hours: Mon - Sat 08:00 - 17:00">เวลาทำการ: จันทร์ - เสาร์ 08:00 - 17:00</span></p>
-          </div>
-        </div>
 
-        <!-- Col 2: Quick Links -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="เมนูหลัก" data-en="Navigation">เมนูหลัก</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="index.html" class="hover:text-orange-400 transition" data-th="หน้าแรก" data-en="Home">หน้าแรก</a></li>
-            <li><a href="about.html" class="hover:text-orange-400 transition" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a></li>
-            <li><a href="services.html" class="hover:text-orange-400 transition" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a></li>
-            <li><a href="projects.html" class="hover:text-orange-400 transition" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a></li>
-            <li><a href="technology.html" class="hover:text-orange-400 transition" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a></li>
-            <li><a href="careers.html" class="hover:text-orange-400 transition" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Services -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="บริการของเรา" data-en="Our Services">บริการของเรา</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="services.html#bim" class="hover:text-orange-400 transition">BIM Tekla Structures</a></li>
-            <li><a href="services.html#truss" class="hover:text-orange-400 transition">Roof Truss & Super Truss</a></li>
-            <li><a href="services.html#cellular" class="hover:text-orange-400 transition">Cellular Beam & PEB</a></li>
-            <li><a href="services.html#erection" class="hover:text-orange-400 transition">Steel Erection & Installation</a></li>
-            <li><a href="services.html#crane" class="hover:text-orange-400 transition">Crane Girder & Pipe Rack</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Corporate & Portal -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="ระบบและนโยบาย" data-en="System & Policy">ระบบและนโยบาย</h4>
-          <ul class="space-y-2 text-xs">
-            <li>
-              <a href="http://202.80.235.61:2026" target="_blank" class="hover:text-orange-400 transition flex items-center gap-1.5">
-                <i class="fas fa-lock text-orange-500"></i> ERP Internal Portal
-              </a>
-            </li>
-            <li><a href="magazine.html" class="hover:text-orange-400 transition">ST Magazine</a></li>
-            <li><a href="media.html" class="hover:text-orange-400 transition" data-th="วิดีโอและสื่อ (Media)" data-en="Media Center">วิดีโอและสื่อ (Media)</a></li>
-                        <li>
-              <button type="button" onclick="openCctvModal()" class="hover:text-orange-400 transition cursor-pointer text-left" data-th="นโยบายกล้องวงจรปิด (CCTV)" data-en="CCTV Privacy Policy">นโยบายกล้องวงจรปิด (CCTV)</button>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-        <p>© 2026 ST. Frame & Truss Co., Ltd. All Rights Reserved.</p>
-        <div class="flex items-center space-x-4">
-          <a href="#" class="hover:text-white"><i class="fab fa-facebook text-base"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-line text-base"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-youtube text-base"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JOB DETAIL MODAL (JOBTHAI SOURCED) -->
+<!-- JOB DETAIL MODAL (JOBTHAI SOURCED) -->
   <div id="jobModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <!-- Backdrop with blur -->
     <div id="jobModalBackdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="closeJobModal()"></div>
@@ -838,7 +623,7 @@
             <button type="button" onclick="closeJobModal()" class="px-4 py-2.5 bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-xl text-xs font-semibold transition cursor-pointer" data-th="ปิด" data-en="Close">
               ปิด
             </button>
-            <a id="modalApplyWebBtn" href="contact.html" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition">
+            <a id="modalApplyWebBtn" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition">
               <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
             </a>
             <a id="modalJobThaiLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-md hover:shadow-lg transition">
@@ -851,8 +636,8 @@
     </div>
   </div>
 
-  <script src="assets/jobs_db.js?v=4"></script>
-  <script src="assets/js/main.js?v=4"></script>
+  <script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/jobs_db.js"></script>
+  
   <script>
     window.openJobModal = function(jobId) {
       const db = window.ST_JOBS_DB || (typeof ST_JOBS_DB !== 'undefined' ? ST_JOBS_DB : null);
@@ -941,5 +726,5 @@
       if (e.key === 'Escape') window.closeJobModal();
     });
   </script>
-</body>
-</html>
+
+<?php get_footer(); ?>

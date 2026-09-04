@@ -1,172 +1,132 @@
-<!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-th="ST Magazine & แคตตาล็อกรายเดือน | ST. Frame & Truss Co., Ltd." data-en="ST Magazine & Monthly Engineering Catalogues | ST. Frame & Truss">ST Magazine & แคตตาล็อกรายเดือน | ST. Frame & Truss Co., Ltd.</title>
-  <meta name="description" content="วารสารวิชาการรายเดือน แคตตาล็อกผลงาน และนวัตกรรมโครงสร้างเหล็ก ST. Frame & Truss ดาวน์โหลดและอ่านออนไลน์ได้ทุกฉบับ">
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/logo-icon.png">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="assets/images/logo-icon.png">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy: '#0B192C',
-              dark: '#0F172A',
-              slate: '#1E293B',
-              orange: '#FF6500',
-              'orange-hover': '#E05600',
-              gold: '#F59E0B',
-              light: '#F8FAFC'
-            }
-          },
-          fontFamily: {
-            sans: ['Prompt', 'Inter', 'sans-serif'],
-            heading: ['Kanit', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    /* 3D Magazine Cover Depth Effect */
-    .mag-cover-wrap {
-      perspective: 1000px;
-    }
-    .mag-cover-card {
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: -4px 6px 16px rgba(0,0,0,0.15), -1px 2px 4px rgba(0,0,0,0.1);
-    }
-    .mag-cover-wrap:hover .mag-cover-card {
-      transform: translateY(-6px) rotateY(-2deg);
-      box-shadow: -8px 16px 28px rgba(0,0,0,0.22), -2px 4px 8px rgba(0,0,0,0.15);
-    }
-    .mag-spine-shadow {
-      background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 6%, transparent 14%);
-    }
-  </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+<?php
+/**
+ * Template Name: Magazine
+ *
+ * @package ST_Frame
+ */
 
-  <!-- TOP BAR -->
-  <div class="bg-slate-950 text-slate-300 text-xs py-2 border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center space-x-6">
-        <span class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-orange-500"></i> <span data-th="บางปะหัน พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">บางปะหัน พระนครศรีอยุธยา</span></span>
-        <span class="flex items-center gap-1.5 whitespace-nowrap"><i class="fas fa-phone-alt text-orange-500"></i> 035-779-554, 035-779-555</span>
-        <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap"><i class="fas fa-envelope text-orange-500"></i> stframe_factory@stframe.com</span>
-      </div>
-      <div class="flex items-center space-x-4">
-        <a href="http://202.80.235.61:2026" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-orange-400 px-2.5 py-1 rounded transition text-xs font-medium flex items-center gap-1">
-          <i class="fas fa-server"></i> ERP System
-        </a>
-        <div class="inline-flex rounded-md shadow-sm border border-slate-700 overflow-hidden bg-slate-900 p-0.5">
-          <button class="lang-btn px-2 py-0.5 rounded text-xs transition active" data-lang="th">TH</button>
-          <button class="lang-btn px-2 py-0.5 rounded text-xs transition" data-lang="en">EN</button>
-        </div>
-      </div>
-    </div>
-  </div>
+get_header();
 
-  <!-- NAVBAR -->
-  <header id="main-header" class="sticky top-0 z-50 bg-slate-950 backdrop-blur-md border-b border-slate-800/80 py-3">
-    <div class="max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-      <!-- LOGO -->
-      <a href="index.html" class="flex items-center gap-3 group shrink-0">
-        <div class="h-11 w-11 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0 group-hover:scale-105 transition transform">
-          <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-        </div>
-        <div class="flex flex-col">
-          <span class="text-xl font-bold tracking-tight text-white font-heading leading-tight group-hover:text-orange-400 transition">ST. FRAME & TRUSS</span>
-          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-medium whitespace-nowrap">Steel Structure Specialist Since 1992</span>
-        </div>
-      </a>
+// Query all magazines from WordPress database
+$mag_args = array(
+	'post_type'      => 'st_magazine',
+	'posts_per_page' => -1,
+	'post_status'    => 'publish',
+	'orderby'        => array(
+		'menu_order' => 'ASC',
+		'date'       => 'DESC',
+	),
+);
+$mag_query = new WP_Query( $mag_args );
 
-      <!-- DESKTOP NAVIGATION MENU & CTA -->
-      <div class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-8">
-        <nav class="flex items-center gap-0.5 xl:gap-1 text-[13px] xl:text-[13.5px] 2xl:text-sm">
-          <a href="index.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
-          <a href="about.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a>
-          <a href="services.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a>
-          <a href="projects.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a>
-          <a href="technology.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a>
-          <a href="magazine.html" class="text-orange-500 font-semibold px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ST Magazine" data-en="ST Magazine">ST Magazine</a>
-          <a href="media.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="Media" data-en="Media">Media</a>
-          <a href="careers.html" class="text-slate-200 hover:text-orange-400 font-medium px-2 xl:px-3 py-2 rounded-lg transition whitespace-nowrap" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a>
-        </nav>
+$magazines_by_year = array();
+$all_issues_count = 0;
 
-        <!-- HEADER CTA BUTTON WITH SEPARATOR -->
-        <div class="pl-3 xl:pl-5 border-l border-slate-800">
-          <a href="contact.html" class="bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-semibold px-4 xl:px-5 py-2.5 rounded-xl shadow-md hover:shadow-orange-500/25 text-xs xl:text-sm transition transform hover:-translate-y-0.5 flex items-center gap-2 whitespace-nowrap shrink-0">
-            <i class="fas fa-paper-plane text-xs"></i>
-            <span data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</span>
-          </a>
-        </div>
-      </div>
+if ( $mag_query->have_posts() ) {
+	while ( $mag_query->have_posts() ) {
+		$mag_query->the_post();
+		$pid = get_the_ID();
 
-      <!-- MOBILE HAMBURGER BUTTON -->
-      <div class="lg:hidden flex items-center">
-        <button id="mobile-menu-btn" type="button" class="text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle menu">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+		// Year
+		$year = get_field( 'year', $pid ) ?: get_post_meta( $pid, 'year', true );
+		if ( ! $year ) {
+			$terms = wp_get_post_terms( $pid, 'magazine_year' );
+			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+				$year = $terms[0]->name;
+			} else {
+				$year = get_the_date( 'Y' );
+			}
+		}
+		$year = (string) $year;
 
-  <!-- MOBILE MENU DRAWER -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950 backdrop-blur-lg hidden flex flex-col justify-between p-6 overflow-y-auto">
-    <div>
-      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-        <div class="flex items-center gap-3">
-          <div class="h-10 w-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0">
-            <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-          </div>
-          <span class="text-lg font-bold text-white font-heading">ST. FRAME & TRUSS</span>
-        </div>
-        <button id="close-mobile-menu" class="text-slate-400 hover:text-white p-2">
-          <i class="fas fa-times text-2xl"></i>
-        </button>
-      </div>
+		// Months & Titles
+		$month_num    = (int) ( get_field( 'month_num', $pid ) ?: get_post_meta( $pid, 'month_num', true ) ?: 1 );
+		$month_th     = get_field( 'month_th', $pid ) ?: get_post_meta( $pid, 'month_th', true ) ?: '';
+		$month_en     = get_field( 'month_en', $pid ) ?: get_post_meta( $pid, 'month_en', true ) ?: '';
+		$title_th     = get_the_title();
+		$title_en     = get_field( 'title_en', $pid ) ?: get_post_meta( $pid, 'title_en', true ) ?: $title_th;
+		$issue_label  = get_field( 'issue_label', $pid ) ?: get_post_meta( $pid, 'issue_label', true ) ?: '';
 
-      <nav class="mt-6 flex flex-col space-y-3">
-        <a href="index.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="หน้าแรก" data-en="Home">หน้าแรก</a>
-        <a href="about.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a>
-        <a href="services.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a>
-        <a href="projects.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a>
-        <a href="technology.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a>
-        <a href="magazine.html" class="text-orange-500 font-semibold py-2 text-base transition border-b border-slate-800/60" data-th="ST Magazine" data-en="ST Magazine">ST Magazine</a>
-        <a href="media.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="Media" data-en="Media">Media</a>
-        <a href="careers.html" class="text-slate-200 hover:text-orange-400 font-medium py-2 text-base transition border-b border-slate-800/60" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a>
-      </nav>
-    </div>
+		// URLs & Files
+		$pdf_file     = get_field( 'pdf_file', $pid ) ?: get_post_meta( $pid, 'pdf_file', true ) ?: '';
+		$view_url     = get_field( 'view_url', $pid ) ?: get_post_meta( $pid, 'view_url', true ) ?: '';
+		$preview_url  = get_field( 'preview_url', $pid ) ?: get_post_meta( $pid, 'preview_url', true ) ?: '';
+		$download_url = get_field( 'download_url', $pid ) ?: get_post_meta( $pid, 'download_url', true ) ?: '';
 
-    <div class="space-y-4 pt-6 border-t border-slate-800">
-      <a href="contact.html" class="w-full text-center block bg-orange-600 hover:bg-orange-500 text-white font-semibold py-3 rounded-lg shadow-lg">
-        <span data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</span>
-      </a>
-      <div class="text-center text-xs text-slate-400">
-        <i class="fas fa-phone mr-1 text-orange-500"></i> 035-779-554 | 035-779-555
-      </div>
-    </div>
-  </div>
+		// Automatic fallbacks for direct uploaded PDF files
+		if ( $pdf_file ) {
+			if ( ! $preview_url )  $preview_url  = $pdf_file;
+			if ( ! $download_url ) $download_url = $pdf_file;
+			if ( ! $view_url )     $view_url     = $pdf_file;
+		} else {
+			if ( ! $preview_url && $view_url )  $preview_url  = $view_url;
+			if ( ! $download_url && $view_url ) $download_url = $view_url;
+		}
+
+		// Thumbnail / Cover image
+		$cover_img = get_the_post_thumbnail_url( $pid, 'large' );
+		if ( ! $cover_img ) {
+			$rel_cover = get_post_meta( $pid, 'cover_img_rel', true );
+			if ( $rel_cover ) {
+				$cover_img = get_template_directory_uri() . '/' . ltrim( $rel_cover, '/' );
+			} else {
+				$cover_img = get_template_directory_uri() . '/assets/images/hero-factory.jpg';
+			}
+		}
+
+		if ( ! isset( $magazines_by_year[ $year ] ) ) {
+			$magazines_by_year[ $year ] = array();
+		}
+
+		$magazines_by_year[ $year ][] = array(
+			'id'           => (string) $pid,
+			'year'         => $year,
+			'month_num'    => $month_num,
+			'month_th'     => $month_th,
+			'month_en'     => $month_en,
+			'title_th'     => $title_th,
+			'title_en'     => $title_en,
+			'issue_label'  => $issue_label,
+			'view_url'     => $view_url,
+			'preview_url'  => $preview_url,
+			'download_url' => $download_url,
+			'cover_img'    => $cover_img,
+			'menu_order'   => (int) get_post_field( 'menu_order', $pid ),
+		);
+
+		$all_issues_count++;
+	}
+	wp_reset_postdata();
+}
+
+// Sort years descending (newest year first: 2026, 2025, 2024...)
+krsort( $magazines_by_year );
+
+// Sort issues in each year by month_num descending, then menu_order ASC
+foreach ( $magazines_by_year as $yr => &$items ) {
+	usort( $items, function( $a, $b ) {
+		if ( (int) $a['month_num'] !== (int) $b['month_num'] ) {
+			return (int) $b['month_num'] - (int) $a['month_num'];
+		}
+		return (int) $a['menu_order'] - (int) $b['menu_order'];
+	} );
+}
+unset( $items );
+
+$years_list = array_keys( $magazines_by_year );
+$latest_year = ! empty( $years_list ) ? $years_list[0] : '2026';
+$latest_item_id = ( ! empty( $latest_year ) && ! empty( $magazines_by_year[ $latest_year ] ) )
+	? $magazines_by_year[ $latest_year ][0]['id']
+	: '';
+?>
+
+</div>
 
   <main class="flex-grow">
     
     <!-- HERO BANNER -->
     <section class="bg-slate-950 text-white py-16 lg:py-20 relative overflow-hidden">
-      <img src="assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/hero-factory.jpg" alt="ST. Frame & Truss Factory" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 lg:opacity-50 pointer-events-none transform filter brightness-105">
       <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30 z-0"></div>
       <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,35 +154,19 @@
         
         <!-- Year Tabs -->
         <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <button onclick="renderMagazines('2026')" id="tab-2026" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-bold bg-orange-600 text-white transition shadow">
-            <span data-th="2026 (ปีปัจจุบัน)" data-en="2026 (Current Year)">2026 (ปีปัจจุบัน)</span>
-          </button>
-          <button onclick="renderMagazines('2025')" id="tab-2025" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2025
-          </button>
-          <button onclick="renderMagazines('2024')" id="tab-2024" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2024
-          </button>
-          <button onclick="renderMagazines('2023')" id="tab-2023" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2023
-          </button>
-          <button onclick="renderMagazines('2022')" id="tab-2022" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2022
-          </button>
-          <button onclick="renderMagazines('2021')" id="tab-2021" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2021
-          </button>
-          <button onclick="renderMagazines('2020')" id="tab-2020" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2020
-          </button>
-          <button onclick="renderMagazines('2019')" id="tab-2019" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2019
-          </button>
-          <button onclick="renderMagazines('2018')" id="tab-2018" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            2018
-          </button>
+          <?php foreach ( $years_list as $idx => $y ) : 
+            $is_active = ( $y === $latest_year );
+          ?>
+            <button onclick="renderMagazines('<?php echo esc_attr( $y ); ?>')" id="tab-<?php echo esc_attr( $y ); ?>" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs <?php echo $is_active ? 'font-bold bg-orange-600 text-white shadow' : 'font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'; ?> transition">
+              <?php if ( $idx === 0 ) : ?>
+                <span data-th="<?php echo esc_attr( $y ); ?> (ปีล่าสุด)" data-en="<?php echo esc_attr( $y ); ?> (Latest)"><?php echo esc_html( $y ); ?> (ปีล่าสุด)</span>
+              <?php else : ?>
+                <span><?php echo esc_html( $y ); ?></span>
+              <?php endif; ?>
+            </button>
+          <?php endforeach; ?>
           <button onclick="renderMagazines('all')" id="tab-all" class="mag-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-            <i class="fas fa-archive mr-1"></i> <span data-th="ทุกฉบับ (90+ เล่ม)" data-en="All Issues (90+ Editions)">ทุกฉบับ (90+ เล่ม)</span>
+            <i class="fas fa-archive mr-1"></i> <span data-th="ทุกฉบับ (<?php echo esc_attr( $all_issues_count ); ?> เล่ม)" data-en="All Issues (<?php echo esc_attr( $all_issues_count ); ?> Editions)">ทุกฉบับ (<?php echo esc_html( $all_issues_count ); ?> เล่ม)</span>
           </button>
         </div>
       </div>
@@ -237,10 +181,10 @@
           <div>
             <div class="flex items-center gap-2 text-xs font-bold text-orange-600 uppercase tracking-widest mb-1">
               <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-              <span id="mag-section-badge">ST MAGAZINE • YEAR 2026</span>
+              <span id="mag-section-badge">ST MAGAZINE • YEAR <?php echo esc_html( $latest_year ); ?></span>
             </div>
             <h2 id="mag-section-title" class="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">
-              <span data-th="วารสาร ST Magazine ประจำปี 2026" data-en="ST Magazine Issues 2026">วารสาร ST Magazine ประจำปี 2026</span>
+              <span data-th="วารสาร ST Magazine ประจำปี <?php echo esc_attr( $latest_year ); ?>" data-en="ST Magazine Issues <?php echo esc_attr( $latest_year ); ?>">วารสาร ST Magazine ประจำปี <?php echo esc_html( $latest_year ); ?></span>
             </h2>
           </div>
           
@@ -298,7 +242,7 @@
       <div class="px-5 py-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-7 h-7 bg-white rounded-md flex items-center justify-center p-0.5 shrink-0">
-            <img src="assets/images/logo-icon.png" alt="ST Logo" class="h-full w-auto object-contain">
+            <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/logo-icon.png" alt="ST Logo" class="h-full w-auto object-contain">
           </div>
           <div>
             <h4 id="pdf-modal-title" class="text-sm font-bold text-white font-heading truncate max-w-xs sm:max-w-md">ST Magazine</h4>
@@ -329,91 +273,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-        
-        <!-- Col 1: Company Profile -->
-        <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-md shrink-0">
-              <img src="assets/images/logo-icon.png" alt="ST. Frame & Truss Logo" class="h-full w-auto object-contain">
-            </div>
-            <span class="text-lg font-bold text-white font-heading">ST. FRAME & TRUSS CO., LTD.</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed" data-th="บริษัท เอส.ที. เฟรม แอนด์ ทรัส จำกัด ผู้เชี่ยวชาญด้านงานออกแบบ ผลิต และติดตั้งโครงสร้างเหล็ก หลังคาโครงถัก และงานวิศวกรรมโครงสร้างครบวงจรตั้งแต่ปี พ.ศ. 2535" data-en="ST. Frame & Truss Co., Ltd. is a turnkey steel structure contractor specializing in engineering design, BIM Tekla, fabrication, and erection since 1992.">
-            บริษัท เอส.ที. เฟรม แอนด์ ทรัส จำกัด ผู้เชี่ยวชาญด้านงานออกแบบ ผลิต และติดตั้งโครงสร้างเหล็ก หลังคาโครงถัก และงานวิศวกรรมโครงสร้างครบวงจรตั้งแต่ปี พ.ศ. 2535
-          </p>
-          <div class="pt-2 text-xs space-y-1.5 text-slate-300">
-            <p class="flex items-start gap-1.5"><i class="fas fa-map-marker-alt text-orange-500 w-4 shrink-0 mt-0.5"></i> <span class="leading-relaxed" data-th="29/4, 29/15, 29/14, 29/17 หมู่ 3 ต.โพธิ์สามต้น<br>อ.บางปะหัน จ.พระนครศรีอยุธยา 13220" data-en="29/4, 29/15, 29/14, 29/17 Moo 3, Pho Sam Ton,<br>Bang Pahan, Phra Nakhon Si Ayutthaya 13220, Thailand">29/4, 29/15, 29/14, 29/17 หมู่ 3 ต.โพธิ์สามต้น<br>อ.บางปะหัน จ.พระนครศรีอยุธยา 13220</span></p>
-            <p><i class="fas fa-phone text-orange-500 w-4"></i> 035-779-554, 035-779-555</p>
-            <p><i class="fas fa-envelope text-orange-500 w-4"></i> stframe_factory@stframe.com</p>
-            <p><i class="fas fa-clock text-orange-500 w-4"></i> <span data-th="เวลาทำการ: จันทร์ - เสาร์ 08:00 - 17:00" data-en="Working Hours: Mon - Sat 08:00 - 17:00">เวลาทำการ: จันทร์ - เสาร์ 08:00 - 17:00</span></p>
-          </div>
-        </div>
 
-        <!-- Col 2: Quick Links -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="เมนูหลัก" data-en="Navigation">เมนูหลัก</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="index.html" class="hover:text-orange-400 transition" data-th="หน้าแรก" data-en="Home">หน้าแรก</a></li>
-            <li><a href="about.html" class="hover:text-orange-400 transition" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</a></li>
-            <li><a href="services.html" class="hover:text-orange-400 transition" data-th="บริการและโซลูชัน" data-en="Services">บริการและโซลูชัน</a></li>
-            <li><a href="projects.html" class="hover:text-orange-400 transition" data-th="ผลงานโครงการ" data-en="Projects">ผลงานโครงการ</a></li>
-            <li><a href="technology.html" class="hover:text-orange-400 transition" data-th="เทคโนโลยีและโรงงาน" data-en="Tech & Facility">เทคโนโลยีและโรงงาน</a></li>
-            <li><a href="careers.html" class="hover:text-orange-400 transition" data-th="ร่วมงานกับเรา" data-en="Careers">ร่วมงานกับเรา</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Services -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="บริการของเรา" data-en="Our Services">บริการของเรา</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="services.html#bim" class="hover:text-orange-400 transition">BIM Tekla Structures</a></li>
-            <li><a href="services.html#truss" class="hover:text-orange-400 transition">Roof Truss & Super Truss</a></li>
-            <li><a href="services.html#cellular" class="hover:text-orange-400 transition">Cellular Beam & PEB</a></li>
-            <li><a href="services.html#erection" class="hover:text-orange-400 transition">Steel Erection & Installation</a></li>
-            <li><a href="services.html#crane" class="hover:text-orange-400 transition">Crane Girder & Pipe Rack</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Corporate & Portal -->
-        <div class="space-y-3">
-          <h4 class="text-white font-bold font-heading text-sm uppercase tracking-wider" data-th="ระบบและนโยบาย" data-en="System & Policy">ระบบและนโยบาย</h4>
-          <ul class="space-y-2 text-xs">
-            <li>
-              <a href="http://202.80.235.61:2026" target="_blank" class="hover:text-orange-400 transition flex items-center gap-1.5">
-                <i class="fas fa-lock text-orange-500"></i> ERP Internal Portal
-              </a>
-            </li>
-            <li><a href="magazine.html" class="hover:text-orange-400 transition">ST Magazine</a></li>
-            <li><a href="media.html" class="hover:text-orange-400 transition" data-th="วิดีโอและสื่อ (Media)" data-en="Media Center">วิดีโอและสื่อ (Media)</a></li>
-                        <li>
-              <button type="button" onclick="openCctvModal()" class="hover:text-orange-400 transition cursor-pointer text-left" data-th="นโยบายกล้องวงจรปิด (CCTV)" data-en="CCTV Privacy Policy">นโยบายกล้องวงจรปิด (CCTV)</button>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-        <p>© 2026 ST. Frame & Truss Co., Ltd. All Rights Reserved.</p>
-        <div class="flex items-center space-x-4">
-          <a href="#" class="hover:text-white"><i class="fab fa-facebook text-base"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-line text-base"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-youtube text-base"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- DATA & SCRIPTS -->
-  <script src="assets/magazines_db.js?v=2"></script>
-  <script src="assets/js/main.js?v=3"></script>
-  
+<!-- DATA & SCRIPTS -->
   <script>
-    let currentYear = '2026';
+    window.ST_MAGAZINES_DB = <?php echo wp_json_encode( $magazines_by_year, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?> || {};
+    window.ST_LATEST_MAGAZINE_ID = <?php echo wp_json_encode( (string) $latest_item_id ); ?>;
+    window.ST_DEFAULT_YEAR = <?php echo wp_json_encode( (string) $latest_year ); ?>;
+
+    let currentYear = window.ST_DEFAULT_YEAR || '2026';
     let currentSearch = '';
 
     function renderMagazines(year) {
@@ -439,8 +306,8 @@
         Object.keys(ST_MAGAZINES_DB).sort((a,b) => b - a).forEach(y => {
           issues = issues.concat(ST_MAGAZINES_DB[y]);
         });
-        document.getElementById('mag-section-badge').innerText = 'ST MAGAZINE • COMPLETE ARCHIVE (2018 - 2026)';
-        document.getElementById('mag-section-title').innerText = isEn ? 'ST Magazine Complete Archives (2018 - 2026)' : 'คลังวารสาร ST Magazine ทุกฉบับย้อนหลัง';
+        document.getElementById('mag-section-badge').innerText = 'ST MAGAZINE • COMPLETE ARCHIVE';
+        document.getElementById('mag-section-title').innerText = isEn ? 'ST Magazine Complete Archives' : 'คลังวารสาร ST Magazine ทุกฉบับย้อนหลัง';
       } else {
         issues = ST_MAGAZINES_DB[year] || [];
         document.getElementById('mag-section-badge').innerText = `ST MAGAZINE • YEAR ${year}`;
@@ -451,11 +318,11 @@
       if (currentSearch.trim()) {
         const q = currentSearch.trim().toLowerCase();
         issues = issues.filter(item => 
-          item.title_th.toLowerCase().includes(q) ||
-          item.title_en.toLowerCase().includes(q) ||
-          item.month_th.toLowerCase().includes(q) ||
+          (item.title_th && item.title_th.toLowerCase().includes(q)) ||
+          (item.title_en && item.title_en.toLowerCase().includes(q)) ||
+          (item.month_th && item.month_th.toLowerCase().includes(q)) ||
           (item.month_en && item.month_en.toLowerCase().includes(q)) ||
-          item.year.includes(q)
+          (item.year && item.year.includes(q))
         );
       }
 
@@ -475,9 +342,9 @@
       }
 
       grid.innerHTML = issues.map(item => {
-        const isLatest = (item.year === '2026' && item.month_num === 7);
+        const isLatest = (String(item.id) === String(window.ST_LATEST_MAGAZINE_ID));
         const titlePrimary = isEn ? (item.title_en || item.title_th) : item.title_th;
-        const titleSecondary = isEn ? item.title_th : `${item.title_en} • ฉบับเต็ม E-Book`;
+        const titleSecondary = isEn ? (item.title_th || '') : (item.title_en ? `${item.title_en} • ฉบับเต็ม E-Book` : 'ฉบับเต็ม E-Book');
         const readText = isEn ? 'Read E-Book' : 'เปิดอ่าน E-Book';
         const yearLabel = isEn ? `Year ${item.year}` : `ปี ${item.year}`;
         const latestLabel = isEn ? 'Latest Issue' : 'ฉบับล่าสุดประจำเดือน';
@@ -497,7 +364,7 @@
             <!-- Realistic 3D Magazine Cover Presentation -->
             <div class="mag-cover-wrap p-4 bg-slate-100/70 border-b border-slate-100 flex justify-center items-center">
               <div class="mag-cover-card relative w-full aspect-[3/4.2] rounded-r-lg rounded-l-sm overflow-hidden bg-slate-900 cursor-pointer" onclick="openPdfModal('${item.preview_url}', '${titlePrimary.replace(/'/g, "\\'")}', '${item.download_url}', '${item.view_url}')">
-                <img src="${item.cover_img}" alt="${titlePrimary}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=${item.id}&sz=w600';" decoding="async">
+                <img src="${item.cover_img}" alt="${titlePrimary}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 ease-out" loading="lazy" onerror="this.onerror=null; this.src='<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/hero-factory.jpg';" decoding="async">
                 
                 <!-- Magazine spine shadow overlay for book depth -->
                 <div class="mag-spine-shadow absolute inset-y-0 left-0 w-8 pointer-events-none z-10"></div>
@@ -593,8 +460,8 @@
           if (e.target === modal) closePdfModal();
         });
       }
-      // Initial render for year 2026
-      renderMagazines('2026');
+      // Initial render for default latest year
+      renderMagazines(window.ST_DEFAULT_YEAR || '2026');
     });
 
     // Close on Escape key
@@ -603,5 +470,4 @@
     });
   </script>
 
-</body>
-</html>
+<?php get_footer(); ?>

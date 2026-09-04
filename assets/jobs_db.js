@@ -234,3 +234,7 @@ const ST_JOBS_DB = [
     ]
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.ST_JOBS_DB = ST_JOBS_DB;
+}
