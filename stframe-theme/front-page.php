@@ -594,91 +594,52 @@ get_header(); ?>
           </h2>
         </div>
 
+        <?php
+        $home_clients_query = new WP_Query( array(
+          'post_type'      => 'st_client',
+          'post_status'    => 'publish',
+          'posts_per_page' => 12,
+          'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
+          'meta_query'     => array(
+            array(
+              'key'     => 'show_on_home',
+              'value'   => '1',
+              'compare' => '=',
+            ),
+          ),
+        ) );
+
+        if ( ! $home_clients_query->have_posts() ) {
+          $home_clients_query = new WP_Query( array(
+            'post_type'      => 'st_client',
+            'post_status'    => 'publish',
+            'posts_per_page' => 12,
+            'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
+          ) );
+        }
+        ?>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center">
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-obayashi.svg" alt="Thai Obayashi" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">THAI OBAYASHI</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ไทยโอบายาชิ" data-en="Thai Obayashi Corp">ไทยโอบายาชิ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-takenaka.svg" alt="Thai Takenaka" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">THAI TAKENAKA</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ไทยทาเคนากะ" data-en="Thai Takenaka International">ไทยทาเคนากะ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-toda.svg" alt="Thai Toda" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">THAI TODA</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ไทยโทดะ" data-en="Thai Toda Corp">ไทยโทดะ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-shimizu.svg" alt="Thai Shimizu" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">THAI SHIMIZU</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ไทยชิมิซึ" data-en="Thai Shimizu Construction">ไทยชิมิซึ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/ch-karnchang-tokyu.svg" alt="CH. Karnchang-Tokyu" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">CH. KARNCHANG</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ช.การช่าง-โตกิว" data-en="CH. Karnchang-Tokyu">ช.การช่าง-โตกิว</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-nishimatsu.svg" alt="Thai Nishimatsu" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">THAI NISHIMATSU</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="ไทยนิชิมัตสึ" data-en="Thai Nishimatsu">ไทยนิชิมัตสึ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/ritta.svg" alt="RITTA" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">RITTA</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="บจก. ฤทธา" data-en="RITTA Co., Ltd.">บจก. ฤทธา</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/pre-built.svg" alt="PRE-BUILT" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">PRE-BUILT</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="บมจ. พรีบิลท์" data-en="Pre-Built PLC">บมจ. พรีบิลท์</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/homepro.svg" alt="HOMEPRO" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">HOME PRODUCT CENTER</span>
-            <span class="text-[10px] text-slate-400 mt-0.5">HomePro & MegaHome</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/western-digital.svg" alt="WESTERN DIGITAL" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">WESTERN DIGITAL</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="เวสเทิร์น ดิจิตอล" data-en="Western Digital">เวสเทิร์น ดิจิตอล</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/sansiri.svg" alt="SANSIRI" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">SANSIRI</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="บมจ. แสนสิริ" data-en="Sansiri PLC">บมจ. แสนสิริ</span>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-            <div class="h-10 w-full flex items-center justify-center mb-2">
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/mitsubishi-motors.svg" alt="MITSUBISHI MOTORS" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-            </div>
-            <span class="font-bold text-xs text-slate-800 font-heading">MITSUBISHI MOTORS</span>
-            <span class="text-[10px] text-slate-400 mt-0.5" data-th="มิตซูบิชิ มอเตอร์ส" data-en="Mitsubishi Motors">มิตซูบิชิ มอเตอร์ส</span>
-          </div>
+          <?php if ( $home_clients_query->have_posts() ) : ?>
+            <?php while ( $home_clients_query->have_posts() ) : $home_clients_query->the_post(); 
+              $cid      = get_the_ID();
+              $title    = get_the_title();
+              $sub_th   = get_post_meta( $cid, 'subtitle_th', true ) ?: $title;
+              $sub_en   = get_post_meta( $cid, 'subtitle_en', true ) ?: $sub_th;
+              $logo_url = stframe_get_client_logo_url( $cid );
+            ?>
+              <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
+                <div class="h-10 w-full flex items-center justify-center mb-2">
+                  <?php if ( $logo_url ) : ?>
+                    <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="max-h-8 max-w-[110px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
+                  <?php else : ?>
+                    <i class="fas fa-building text-slate-400 text-xl"></i>
+                  <?php endif; ?>
+                </div>
+                <span class="font-bold text-xs text-slate-800 font-heading"><?php echo esc_html( $title ); ?></span>
+                <span class="text-[10px] text-slate-400 mt-0.5" data-th="<?php echo esc_attr( $sub_th ); ?>" data-en="<?php echo esc_attr( $sub_en ); ?>"><?php echo esc_html( $sub_th ); ?></span>
+              </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+          <?php endif; ?>
         </div>
 
         <div class="mt-8 text-center">

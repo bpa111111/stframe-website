@@ -5,7 +5,117 @@
  * @package ST_Frame
  */
 
-get_header(); ?>
+get_header();
+
+// Query all active career postings from WordPress database
+$career_query = new WP_Query( array(
+	'post_type'      => 'st_career',
+	'posts_per_page' => -1,
+	'post_status'    => 'publish',
+	'orderby'        => array(
+		'menu_order' => 'ASC',
+		'date'       => 'DESC',
+	),
+) );
+
+$jobs_list     = array();
+$jobthai_count = 0;
+$direct_count  = 0;
+
+if ( $career_query->have_posts() ) {
+	while ( $career_query->have_posts() ) {
+		$career_query->the_post();
+		$pid = get_the_ID();
+
+		$is_active = get_post_meta( $pid, 'is_active', true );
+		if ( $is_active !== '' && $is_active == '0' ) {
+			continue; // Skip inactive/closed positions
+		}
+
+		$source     = get_post_meta( $pid, 'job_source', true ) ?: 'direct';
+		$is_jobthai = ( $source === 'jobthai' );
+		if ( $is_jobthai ) {
+			$jobthai_count++;
+		} else {
+			$direct_count++;
+		}
+
+		$jobthai_id = get_post_meta( $pid, 'jobthai_id', true );
+		$job_id_num = $jobthai_id ? (int) $jobthai_id : $pid;
+
+		$title_th = get_the_title();
+		$title_en = get_post_meta( $pid, 'title_en', true ) ?: $title_th;
+
+		$dept_th = get_post_meta( $pid, 'department_th', true ) ?: ( $is_jobthai ? 'งานวิศวกรรม / โรงงาน' : 'งานบริหาร / จัดการ' );
+		$dept_en = get_post_meta( $pid, 'department_en', true ) ?: $dept_th;
+
+		$salary_th = get_post_meta( $pid, 'salary_th', true ) ?: 'ตามโครงสร้างบริษัทฯ';
+		$salary_en = get_post_meta( $pid, 'salary_en', true ) ?: ( $salary_th === 'ตามตกลง' ? 'Negotiable' : 'Company Salary Structure' );
+
+		$workplace_th = get_post_meta( $pid, 'workplace_th', true ) ?: 'ประจำโรงงานอยุธยา (อ.บางปะหัน จ.พระนครศรีอยุธยา)';
+		$workplace_en = get_post_meta( $pid, 'workplace_en', true ) ?: 'Ayutthaya Plant, Bang Pahan, Ayutthaya';
+
+		$working_hours_th = get_post_meta( $pid, 'working_hours_th', true ) ?: 'วันจันทร์ - วันเสาร์ เวลา 07:45 - 17:00 น.';
+		$working_hours_en = get_post_meta( $pid, 'working_hours_en', true ) ?: 'Monday - Saturday: 07:45 - 17:00';
+
+		$job_type_th = get_post_meta( $pid, 'job_type_th', true ) ?: 'งานประจำ (Full-time)';
+		$job_type_en = get_post_meta( $pid, 'job_type_en', true ) ?: 'Full-time';
+
+		$is_urgent   = ( get_post_meta( $pid, 'is_urgent', true ) == '1' );
+		$jobthai_url = get_post_meta( $pid, 'jobthai_url', true ) ?: ( $jobthai_id ? "https://www.jobthai.com/th/job/{$jobthai_id}" : 'https://www.jobthai.com/th/company/272705' );
+
+		$apply_url = get_post_meta( $pid, 'apply_url', true );
+		if ( ! $apply_url ) {
+			$apply_url = esc_url( home_url( '/contact/' ) ) . '?apply=' . urlencode( $title_th );
+		}
+
+		$raw_resp_th   = get_post_meta( $pid, 'responsibilities', true );
+		$resp_th_lines = array_filter( array_map( 'trim', explode( "\n", $raw_resp_th ) ) );
+
+		$raw_resp_en   = get_post_meta( $pid, 'responsibilities_en', true );
+		$resp_en_lines = array_filter( array_map( 'trim', explode( "\n", $raw_resp_en ) ) );
+
+		$raw_qual_th   = get_post_meta( $pid, 'qualifications', true );
+		$qual_th_lines = array_filter( array_map( 'trim', explode( "\n", $raw_qual_th ) ) );
+
+		$raw_qual_en   = get_post_meta( $pid, 'qualifications_en', true );
+		$qual_en_lines = array_filter( array_map( 'trim', explode( "\n", $raw_qual_en ) ) );
+
+		$badge_color = get_post_meta( $pid, 'badge_color', true ) ?: ( $is_jobthai ? 'orange' : 'blue' );
+
+		$jobs_list[] = array(
+			'id'                  => $job_id_num,
+			'post_id'             => $pid,
+			'source'              => $source,
+			'is_jobthai'          => $is_jobthai,
+			'is_urgent'           => $is_urgent,
+			'title_th'            => $title_th,
+			'title_en'            => $title_en,
+			'category_th'         => $dept_th,
+			'category_en'         => $dept_en,
+			'salary_th'           => $salary_th,
+			'salary_en'           => $salary_en,
+			'workplace_th'        => $workplace_th,
+			'workplace_en'        => $workplace_en,
+			'working_hours_th'    => $working_hours_th,
+			'working_hours_en'    => $working_hours_en,
+			'type_th'             => $job_type_th,
+			'type_en'             => $job_type_en,
+			'url'                 => $jobthai_url,
+			'apply_url'           => $apply_url,
+			'badge_color'         => $badge_color,
+			'responsibilities_th' => ! empty( $resp_th_lines ) ? array_values( $resp_th_lines ) : array( 'ปฏิบัติงานตามขอบเขตงานโครงสร้างเหล็กและข้อกำหนดมาตรฐานของบริษัท' ),
+			'responsibilities_en' => ! empty( $resp_en_lines ) ? array_values( $resp_en_lines ) : array( 'Perform duties aligned with structural engineering standards and company workflows' ),
+			'qualifications_th'   => ! empty( $qual_th_lines ) ? array_values( $qual_th_lines ) : array( 'ไม่จำกัดเพศ มีความรับผิดชอบ และตรงต่อเวลา' ),
+			'qualifications_en'   => ! empty( $qual_en_lines ) ? array_values( $qual_en_lines ) : array( 'Any gender, accountable, and punctual' ),
+		);
+	}
+	wp_reset_postdata();
+}
+
+$total_jobs = count( $jobs_list );
+$last_sync  = get_transient( 'stframe_jobthai_last_sync' );
+?>
 
 </div>
 
@@ -33,8 +143,9 @@ get_header(); ?>
 
     <!-- JOB OPENINGS -->
     <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
+        <!-- Header & Direct Link -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div class="max-w-2xl space-y-2">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-orange-100 text-orange-700 text-xs font-bold whitespace-nowrap">
@@ -43,9 +154,6 @@ get_header(); ?>
             <h2 class="text-2xl sm:text-3xl font-bold font-heading text-slate-900" data-th="ตำแหน่งงานที่เปิดรับสมัคร (Job Vacancies)" data-en="Current Job Openings">
               ตำแหน่งงานที่เปิดรับสมัคร (Job Vacancies)
             </h2>
-            <p class="text-slate-600 text-xs sm:text-sm">
-              <span data-th="ประจำโรงงานอยุธยา (อ.บางปะหัน จ.พระนครศรีอยุธยา) • เวลาทำงาน" data-en="Ayutthaya Plant (Bang Pahan, Phra Nakhon Si Ayutthaya) • Working Hours">ประจำโรงงานอยุธยา (อ.บางปะหัน จ.พระนครศรีอยุธยา) • เวลาทำงาน</span> <span data-th="จันทร์ - เสาร์ 07:45 - 17:00 น." data-en="Mon – Sat 07:45 – 17:00">จันทร์ - เสาร์ 07:45 - 17:00 น.</span>
-            </p>
           </div>
           
           <!-- Direct JobThai Company Profile Link -->
@@ -55,173 +163,141 @@ get_header(); ?>
           </a>
         </div>
 
-        <div class="space-y-4">
-          
-          <!-- Job 1: วิศวกรประเมินราคา -->
-          <div class="steel-card bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 transition shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-5 group">
-            <div class="space-y-2 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-700 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
-                  <span data-th="งานวิศวกรรม (Engineering)" data-en="Engineering">งานวิศวกรรม (Engineering)</span>
-                </span>
-                <span class="text-slate-400 text-xs">•</span>
-                <span class="text-xs text-slate-500 font-medium"><span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span> <strong class="text-slate-800 font-semibold"><span data-th="ตามตกลง / ประสบการณ์" data-en="Negotiable / Experience">ตามตกลง / ประสบการณ์</span></strong></span>
-              </div>
-              <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-orange-600 transition" data-th="วิศวกรประเมินราคา (Cost Estimation Engineer)" data-en="Cost Estimation Engineer">
-                วิศวกรประเมินราคา (Cost Estimation Engineer)
-              </h3>
-              <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-                <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="อ.บางปะหัน จ.พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">อ.บางปะหัน จ.พระนครศรีอยุธยา</span></span>
-                <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="ประจำโรงงานอยุธยา" data-en="Ayutthaya Plant">ประจำโรงงานอยุธยา</span></span>
-                <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="จันทร์ - เสาร์ (07:45 - 17:00 น.)" data-en="Mon – Sat (07:45 – 17:00)">จันทร์ - เสาร์ (07:45 - 17:00 น.)</span></span>
-              </div>
+        <!-- JOBTHAI LIVE SYNC HIGHLIGHT BANNER -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-orange-50 via-amber-50 to-orange-50/60 border-2 border-orange-300 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start sm:items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center shrink-0 shadow-sm font-black text-base">
+              <i class="fas fa-bolt"></i>
             </div>
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
-              <button type="button" onclick="openJobModal(1181739)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition">
-                <i class="fas fa-file-lines text-orange-500"></i>
-                <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
-              </button>
-              <a href="https://www.jobthai.com/th/job/1181739" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-                <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-              <a href="contact.html?apply=estimation-engineer" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition" data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">
-                <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
-              </a>
+            <div class="space-y-0.5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-orange-600 text-white text-[10px] font-extrabold uppercase tracking-wide shadow-xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+                  <span>JobThai Live Sync</span>
+                </span>
+                <span class="text-xs font-bold text-slate-900" data-th="เชื่อมต่อและซิงค์ข้อมูลตำแหน่งงานตรงจาก JobThai ตลอด 24 ชม." data-en="Live synchronized with official JobThai recruitment database 24/7">
+                  เชื่อมต่อและซิงค์ข้อมูลตำแหน่งงานตรงจาก JobThai ตลอด 24 ชม.
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600">
+                <span data-th="บริษัท เอส ที เฟรม แอนด์ ทรัส จำกัด (JobThai Company ID: 272705) • ตำแหน่งงานที่มีป้ายสีส้มจะเชื่อมโยงกับ JobThai โดยตรง" data-en="ST. Frame & Truss Co., Ltd. (JobThai Company ID: 272705) • Orange badge listings synchronize with JobThai.">
+                  บริษัท เอส ที เฟรม แอนด์ ทรัส จำกัด (JobThai Company ID: 272705) • ตำแหน่งงานที่มีป้ายสีส้มจะเชื่อมโยงกับ JobThai โดยตรง
+                </span>
+                <?php if ( $last_sync ) : ?>
+                  <span class="hidden sm:inline text-slate-400"> • อัปเดตล่าสุด: <?php echo esc_html( $last_sync ); ?></span>
+                <?php endif; ?>
+              </p>
             </div>
           </div>
-
-          <!-- Job 2: ผู้จัดการฝ่าย/ หัวหน้า ฝ่ายจัดซื้อ -->
-          <div class="steel-card bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 transition shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-5 group">
-            <div class="space-y-2 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
-                  <span data-th="งานจัดซื้อ / ธุรการ (Procurement)" data-en="Procurement">งานจัดซื้อ / ธุรการ (Procurement)</span>
-                </span>
-                <span class="text-slate-400 text-xs">•</span>
-                <span class="text-xs text-slate-500 font-medium"><span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span> <strong class="text-slate-800 font-semibold"><span data-th="ตามโครงสร้างบริษัทฯ" data-en="Company Structure">ตามโครงสร้างบริษัทฯ</span></strong></span>
-              </div>
-              <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-orange-600 transition" data-th="ผู้จัดการฝ่าย / หัวหน้าฝ่ายจัดซื้อ (Procurement Manager / Head of Purchasing)" data-en="Procurement Manager / Head of Purchasing">
-                ผู้จัดการฝ่าย / หัวหน้าฝ่ายจัดซื้อ (Procurement Manager / Head of Purchasing)
-              </h3>
-              <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-                <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="อ.บางปะหัน จ.พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">อ.บางปะหัน จ.พระนครศรีอยุธยา</span></span>
-                <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="ประจำโรงงานอยุธยา" data-en="Ayutthaya Plant">ประจำโรงงานอยุธยา</span></span>
-                <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="จันทร์ - เสาร์ (07:45 - 17:00 น.)" data-en="Mon – Sat (07:45 – 17:00)">จันทร์ - เสาร์ (07:45 - 17:00 น.)</span></span>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
-              <button type="button" onclick="openJobModal(1888744)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition">
-                <i class="fas fa-file-lines text-orange-500"></i>
-                <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
-              </button>
-              <a href="https://www.jobthai.com/th/job/1888744" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-                <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-              <a href="contact.html?apply=procurement" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition">
-                <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
-              </a>
-            </div>
+          <div class="flex items-center gap-2 shrink-0 self-start md:self-auto">
+            <a href="https://www.jobthai.com/th/company/272705" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold shadow-xs hover:shadow transition flex items-center gap-1.5">
+              <i class="fas fa-external-link-alt text-[10px]"></i>
+              <span data-th="เปิดหน้าบริษัทบน JobThai" data-en="Open JobThai Profile">เปิดหน้าบริษัทบน JobThai</span>
+            </a>
           </div>
+        </div>
 
-          <!-- Job 3: เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานสี) -->
-          <div class="steel-card bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 transition shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-5 group">
-            <div class="space-y-2 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
-                  <span data-th="งานผลิต / ควบคุมคุณภาพ (QC Painting)" data-en="QC Painting">งานผลิต / ควบคุมคุณภาพ (QC Painting)</span>
-                </span>
-                <span class="text-slate-400 text-xs">•</span>
-                <span class="text-xs text-slate-500 font-medium"><span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span> <strong class="text-slate-800 font-semibold"><span data-th="ตามโครงสร้างบริษัทฯ" data-en="Company Structure">ตามโครงสร้างบริษัทฯ</span></strong></span>
-              </div>
-              <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-orange-600 transition" data-th="เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานสี) - QC Inspector (Painting & Coating)" data-en="QC Inspector (Painting & Coating)">
-                เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานสี) - QC Inspector (Painting & Coating)
-              </h3>
-              <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-                <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="อ.บางปะหัน จ.พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">อ.บางปะหัน จ.พระนครศรีอยุธยา</span></span>
-                <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="ประจำโรงงานอยุธยา" data-en="Ayutthaya Plant">ประจำโรงงานอยุธยา</span></span>
-                <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="จันทร์ - เสาร์ (07:45 - 17:00 น.)" data-en="Mon – Sat (07:45 – 17:00)">จันทร์ - เสาร์ (07:45 - 17:00 น.)</span></span>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
-              <button type="button" onclick="openJobModal(1356457)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition">
-                <i class="fas fa-file-lines text-orange-500"></i>
-                <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
-              </button>
-              <a href="https://www.jobthai.com/th/job/1356457" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-                <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-              <a href="contact.html?apply=qc-paint" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition">
-                <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
-              </a>
-            </div>
+        <!-- CATEGORY & SOURCE FILTER TABS -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+          <div class="flex flex-wrap items-center gap-2" id="job-filter-tabs">
+            <button type="button" onclick="filterJobs('all')" id="filter-all" class="job-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white shadow transition flex items-center gap-2 cursor-pointer">
+              <i class="fas fa-briefcase text-xs"></i>
+              <span data-th="ตำแหน่งงานทั้งหมด (<?php echo $total_jobs; ?>)" data-en="All Positions (<?php echo $total_jobs; ?>)">ตำแหน่งงานทั้งหมด (<?php echo $total_jobs; ?>)</span>
+            </button>
+            <button type="button" onclick="filterJobs('jobthai')" id="filter-jobthai" class="job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-orange-100 text-orange-800 hover:bg-orange-200 transition flex items-center gap-2 border border-orange-300 cursor-pointer">
+              <span class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></span>
+              <span data-th="🟧 ดึงข้อมูลจาก JobThai (<?php echo $jobthai_count; ?>)" data-en="🟧 JobThai Live Sync (<?php echo $jobthai_count; ?>)">🟧 ดึงข้อมูลจาก JobThai (<?php echo $jobthai_count; ?>)</span>
+            </button>
+            <button type="button" onclick="filterJobs('direct')" id="filter-direct" class="job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200 cursor-pointer">
+              <i class="fas fa-building text-blue-600 text-xs"></i>
+              <span data-th="🟦 เปิดรับสมัครตรง (<?php echo $direct_count; ?>)" data-en="🟦 ST Direct Hiring (<?php echo $direct_count; ?>)">🟦 เปิดรับสมัครตรง (<?php echo $direct_count; ?>)</span>
+            </button>
           </div>
-
-          <!-- Job 4: เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานเชื่อม) -->
-          <div class="steel-card bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 transition shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-5 group">
-            <div class="space-y-2 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
-                  <span data-th="งานผลิต / ควบคุมคุณภาพ (QC Welding)" data-en="QC Welding">งานผลิต / ควบคุมคุณภาพ (QC Welding)</span>
-                </span>
-                <span class="text-slate-400 text-xs">•</span>
-                <span class="text-xs text-slate-500 font-medium"><span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span> <strong class="text-slate-800 font-semibold"><span data-th="ตามโครงสร้างบริษัทฯ" data-en="Company Structure">ตามโครงสร้างบริษัทฯ</span></strong></span>
-              </div>
-              <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-orange-600 transition" data-th="เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานเชื่อม) - QC Inspector (Welding & NDT)" data-en="QC Inspector (Welding & NDT)">
-                เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานเชื่อม) - QC Inspector (Welding & NDT)
-              </h3>
-              <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-                <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="อ.บางปะหัน จ.พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">อ.บางปะหัน จ.พระนครศรีอยุธยา</span></span>
-                <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="ประจำโรงงานอยุธยา" data-en="Ayutthaya Plant">ประจำโรงงานอยุธยา</span></span>
-                <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="จันทร์ - เสาร์ (07:45 - 17:00 น.)" data-en="Mon – Sat (07:45 – 17:00)">จันทร์ - เสาร์ (07:45 - 17:00 น.)</span></span>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
-              <button type="button" onclick="openJobModal(1952936)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition">
-                <i class="fas fa-file-lines text-orange-500"></i>
-                <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
-              </button>
-              <a href="https://www.jobthai.com/th/job/1952936" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-                <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-              <a href="contact.html?apply=qc-weld" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition">
-                <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
-              </a>
-            </div>
+          <div class="text-xs text-slate-500 font-medium">
+            <span id="job-showing-count">กำลังแสดง <?php echo $total_jobs; ?> ตำแหน่ง</span>
           </div>
+        </div>
 
-          <!-- Job 5: เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานประกอบ) -->
-          <div class="steel-card bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 transition shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-5 group">
-            <div class="space-y-2 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
-                  <span data-th="งานผลิต / ควบคุมคุณภาพ (QC Assembly)" data-en="QC Assembly">งานผลิต / ควบคุมคุณภาพ (QC Assembly)</span>
-                </span>
-                <span class="text-slate-400 text-xs">•</span>
-                <span class="text-xs text-slate-500 font-medium"><span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span> <strong class="text-slate-800 font-semibold"><span data-th="ตามโครงสร้างบริษัทฯ" data-en="Company Structure">ตามโครงสร้างบริษัทฯ</span></strong></span>
-              </div>
-              <h3 class="text-lg font-bold font-heading text-slate-900 group-hover:text-orange-600 transition" data-th="เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานประกอบ) - QC Inspector (Steel Fitting & Assembly)" data-en="QC Inspector (Steel Fitting & Assembly)">
-                เจ้าหน้าที่ตรวจสอบคุณภาพ QC (งานประกอบ) - QC Inspector (Steel Fitting & Assembly)
-              </h3>
-              <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
-                <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="อ.บางปะหัน จ.พระนครศรีอยุธยา" data-en="Bang Pahan, Ayutthaya">อ.บางปะหัน จ.พระนครศรีอยุธยา</span></span>
-                <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="ประจำโรงงานอยุธยา" data-en="Ayutthaya Plant">ประจำโรงงานอยุธยา</span></span>
-                <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="จันทร์ - เสาร์ (07:45 - 17:00 น.)" data-en="Mon – Sat (07:45 – 17:00)">จันทร์ - เสาร์ (07:45 - 17:00 น.)</span></span>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
-              <button type="button" onclick="openJobModal(1952930)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition">
-                <i class="fas fa-file-lines text-orange-500"></i>
-                <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
-              </button>
-              <a href="https://www.jobthai.com/th/job/1952930" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-                <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-              <a href="contact.html?apply=qc-assembly" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition" data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">
-                <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
-              </a>
-            </div>
-          </div>
+        <!-- DYNAMIC JOB OPENINGS CARDS LIST -->
+        <div class="space-y-4" id="jobs-container">
+          <?php if ( ! empty( $jobs_list ) ) : ?>
+            <?php foreach ( $jobs_list as $job ) : 
+              $is_jt = $job['is_jobthai'];
+              $badge_color = $job['badge_color'];
+            ?>
+              <div class="job-item steel-card bg-white p-6 rounded-2xl border-2 <?php echo $is_jt ? 'border-orange-300 bg-orange-50/10 hover:border-orange-500' : 'border-slate-200 hover:border-blue-500'; ?> transition-all duration-300 shadow-xs hover:shadow-md flex flex-col lg:flex-row lg:items-center justify-between gap-5 group relative" data-source="<?php echo esc_attr( $job['source'] ); ?>">
+                
+                <div class="space-y-2.5 flex-1">
+                  <!-- Highlights & Category Row -->
+                  <div class="flex flex-wrap items-center gap-2">
+                    <?php if ( $is_jt ) : ?>
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-gradient-to-r from-orange-600 to-amber-500 text-white text-[10px] font-extrabold uppercase tracking-wide shadow-2xs">
+                        <i class="fas fa-bolt text-[9px] animate-pulse"></i> <span>JobThai Live Sync</span>
+                      </span>
+                    <?php else : ?>
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 text-[10px] font-bold">
+                        <i class="fas fa-building text-blue-600 text-[9px]"></i> <span>ST. Frame Direct</span>
+                      </span>
+                    <?php endif; ?>
 
+                    <?php if ( $job['is_urgent'] ) : ?>
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-red-100 text-red-700 font-bold text-[10px]">
+                        <i class="fas fa-fire text-red-500 text-[9px]"></i> <span>รับด่วน</span>
+                      </span>
+                    <?php endif; ?>
+
+                    <span class="px-2.5 py-0.5 rounded-full <?php echo $is_jt ? 'bg-orange-100 text-orange-700' : 'bg-slate-100 text-slate-700'; ?> text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+                      <span data-th="<?php echo esc_attr( $job['category_th'] ); ?>" data-en="<?php echo esc_attr( $job['category_en'] ); ?>"><?php echo esc_html( $job['category_th'] ); ?></span>
+                    </span>
+
+                    <span class="text-slate-300 text-xs">•</span>
+                    <span class="text-xs text-slate-500 font-medium">
+                      <span data-th="เงินเดือน:" data-en="Salary:">เงินเดือน:</span>
+                      <strong class="text-slate-800 font-semibold">
+                        <span data-th="<?php echo esc_attr( $job['salary_th'] ); ?>" data-en="<?php echo esc_attr( $job['salary_en'] ); ?>"><?php echo esc_html( $job['salary_th'] ); ?></span>
+                      </strong>
+                    </span>
+                  </div>
+
+                  <!-- Job Title -->
+                  <h3 class="text-lg font-bold font-heading text-slate-900 <?php echo $is_jt ? 'group-hover:text-orange-600' : 'group-hover:text-blue-600'; ?> transition" data-th="<?php echo esc_attr( $job['title_th'] . ' (' . $job['title_en'] . ')' ); ?>" data-en="<?php echo esc_attr( $job['title_en'] ); ?>">
+                    <?php echo esc_html( $job['title_th'] . ' (' . $job['title_en'] . ')' ); ?>
+                  </h3>
+
+                  <!-- Metadata Details -->
+                  <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
+                    <span><i class="fas fa-map-marker-alt mr-1.5 text-orange-500"></i> <span data-th="<?php echo esc_attr( $job['workplace_th'] ); ?>" data-en="<?php echo esc_attr( $job['workplace_en'] ); ?>"><?php echo esc_html( $job['workplace_th'] ); ?></span></span>
+                    <span><i class="fas fa-user-check mr-1.5 text-emerald-500"></i> <span data-th="<?php echo esc_attr( $job['type_th'] ); ?>" data-en="<?php echo esc_attr( $job['type_en'] ); ?>"><?php echo esc_html( $job['type_th'] ); ?></span></span>
+                    <span><i class="fas fa-clock mr-1.5 text-blue-500"></i> <span data-th="<?php echo esc_attr( $job['working_hours_th'] ); ?>" data-en="<?php echo esc_attr( $job['working_hours_en'] ); ?>"><?php echo esc_html( $job['working_hours_th'] ); ?></span></span>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center gap-2 self-start lg:self-center shrink-0">
+                  <button type="button" onclick="openJobModal(<?php echo esc_attr( $job['id'] ); ?>)" class="px-3.5 py-2.5 bg-white hover:bg-slate-100 hover:text-orange-600 hover:border-slate-300 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs transition cursor-pointer">
+                    <i class="fas fa-file-lines text-orange-500"></i>
+                    <span data-th="ดูรายละเอียด" data-en="View Details">ดูรายละเอียด</span>
+                  </button>
+
+                  <?php if ( $is_jt ) : ?>
+                    <a href="<?php echo esc_url( $job['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
+                      <span data-th="สมัครผ่าน JobThai" data-en="Apply via JobThai">สมัครผ่าน JobThai</span> <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                  <?php endif; ?>
+
+                  <a href="<?php echo esc_url( $job['apply_url'] ); ?>" class="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold transition" data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">
+                    <span data-th="ส่งใบสมัครผ่านเว็บ" data-en="Apply Online">ส่งใบสมัครผ่านเว็บ</span>
+                  </a>
+                </div>
+
+              </div>
+            <?php endforeach; ?>
+          <?php else : ?>
+            <div class="p-12 text-center text-slate-400 bg-slate-50 rounded-2xl border border-slate-200">
+              <i class="fas fa-briefcase text-4xl mb-3 text-slate-300"></i>
+              <p class="text-sm">ขณะนี้ยังไม่มีตำแหน่งงานที่เปิดรับสมัคร</p>
+            </div>
+          <?php endif; ?>
         </div>
 
       </div>
@@ -636,18 +712,65 @@ get_header(); ?>
     </div>
   </div>
 
-  <script src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/jobs_db.js"></script>
-  
   <script>
-    window.openJobModal = function(jobId) {
-      const db = window.ST_JOBS_DB || (typeof ST_JOBS_DB !== 'undefined' ? ST_JOBS_DB : null);
-      if (!db) {
-        console.error("ST_JOBS_DB is not loaded");
-        return;
+    // Live jobs injected directly from WordPress Database (JobThai + Direct)
+    window.ST_JOBS_DB = <?php echo wp_json_encode( $jobs_list, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?> || [];
+
+    // Filter Jobs by Source
+    window.filterJobs = function(source) {
+      const items = document.querySelectorAll('#jobs-container .job-item');
+      let visibleCount = 0;
+
+      items.forEach(function(item) {
+        const itemSource = item.getAttribute('data-source');
+        if (source === 'all' || itemSource === source) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Update count indicator
+      const countEl = document.getElementById('job-showing-count');
+      if (countEl) {
+        const currentLang = localStorage.getItem('stframe_lang') || 'th';
+        countEl.textContent = currentLang === 'en' 
+          ? `Showing ${visibleCount} positions` 
+          : `กำลังแสดง ${visibleCount} ตำแหน่ง`;
       }
-      const job = db.find(j => j.id === Number(jobId));
+
+      // Update tab styles
+      const filterAll = document.getElementById('filter-all');
+      const filterJobthai = document.getElementById('filter-jobthai');
+      const filterDirect = document.getElementById('filter-direct');
+
+      [filterAll, filterJobthai, filterDirect].forEach(btn => {
+        if (!btn) return;
+        btn.classList.remove('bg-slate-900', 'text-white', 'shadow');
+      });
+
+      if (source === 'all' && filterAll) {
+        filterAll.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white shadow transition flex items-center gap-2 cursor-pointer';
+        if (filterJobthai) filterJobthai.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-orange-100 text-orange-800 hover:bg-orange-200 transition flex items-center gap-2 border border-orange-300 cursor-pointer';
+        if (filterDirect) filterDirect.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200 cursor-pointer';
+      } else if (source === 'jobthai' && filterJobthai) {
+        filterJobthai.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-orange-600 text-white shadow-md transition flex items-center gap-2 cursor-pointer';
+        if (filterAll) filterAll.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200 cursor-pointer';
+        if (filterDirect) filterDirect.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200 cursor-pointer';
+      } else if (source === 'direct' && filterDirect) {
+        filterDirect.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-md transition flex items-center gap-2 cursor-pointer';
+        if (filterAll) filterAll.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200 cursor-pointer';
+        if (filterJobthai) filterJobthai.className = 'job-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-orange-100 text-orange-800 hover:bg-orange-200 transition flex items-center gap-2 border border-orange-300 cursor-pointer';
+      }
+    };
+
+    // Open Job Modal
+    window.openJobModal = function(jobId) {
+      const db = window.ST_JOBS_DB || [];
+      const job = db.find(j => String(j.id) === String(jobId) || String(j.post_id) === String(jobId));
       if (!job) {
-        console.error("Job not found:", jobId);
+        console.error("Job not found in database:", jobId);
         return;
       }
 
@@ -655,51 +778,76 @@ get_header(); ?>
       const isEn = currentLang === 'en';
 
       const badgeEl = document.getElementById('modalJobBadge');
-      if (badgeEl) badgeEl.textContent = isEn ? (job.category_en || job.category_th) : job.category_th;
+      if (badgeEl) {
+        badgeEl.textContent = isEn ? (job.category_en || job.category_th) : job.category_th;
+      }
 
       const typeEl = document.getElementById('modalJobType');
-      if (typeEl) typeEl.textContent = isEn ? (job.type_en || job.type_th) : job.type_th;
+      if (typeEl) {
+        typeEl.textContent = isEn ? (job.type_en || job.type_th) : job.type_th;
+      }
 
       const titleThEl = document.getElementById('modalJobTitleTh');
-      if (titleThEl) titleThEl.textContent = isEn ? job.title_en : job.title_th;
+      if (titleThEl) {
+        titleThEl.textContent = isEn ? (job.title_en || job.title_th) : job.title_th;
+      }
 
       const titleEnEl = document.getElementById('modalJobTitleEn');
-      if (titleEnEl) titleEnEl.textContent = isEn ? job.title_th : job.title_en;
+      if (titleEnEl) {
+        titleEnEl.textContent = isEn ? job.title_th : (job.title_en || '');
+      }
 
       const salaryEl = document.getElementById('modalJobSalary');
-      if (salaryEl) salaryEl.textContent = isEn ? (job.salary_en || job.salary_th) : job.salary_th;
+      if (salaryEl) {
+        salaryEl.textContent = isEn ? (job.salary_en || job.salary_th) : job.salary_th;
+      }
 
       const hoursEl = document.getElementById('modalJobHours');
-      if (hoursEl) hoursEl.textContent = isEn ? (job.working_hours_en || job.working_hours_th) : job.working_hours_th;
+      if (hoursEl) {
+        hoursEl.textContent = isEn ? (job.working_hours_en || job.working_hours_th) : job.working_hours_th;
+      }
 
       const locEl = document.getElementById('modalJobLocation');
-      if (locEl) locEl.textContent = isEn ? (job.workplace_en || "Ayutthaya Plant (Bang Pahan)") : (job.workplace_th || "โรงงานอยุธยา (อ.บางปะหัน)");
+      if (locEl) {
+        locEl.textContent = isEn ? (job.workplace_en || "Ayutthaya Plant (Bang Pahan)") : (job.workplace_th || "โรงงานอยุธยา (อ.บางปะหัน)");
+      }
 
+      // Toggle JobThai button visibility & link
       const linkEl = document.getElementById('modalJobThaiLink');
-      if (linkEl) linkEl.href = job.url;
+      if (linkEl) {
+        if (job.is_jobthai && job.url) {
+          linkEl.style.display = 'inline-flex';
+          linkEl.href = job.url;
+        } else {
+          linkEl.style.display = 'none';
+        }
+      }
 
+      // Update apply button
       const applyEl = document.getElementById('modalApplyWebBtn');
-      if (applyEl) applyEl.href = "contact.html?apply=" + encodeURIComponent(isEn ? job.title_en : job.title_th);
+      if (applyEl) {
+        applyEl.href = job.apply_url || ("<?php echo esc_url( home_url( '/contact/' ) ); ?>?apply=" + encodeURIComponent(isEn ? (job.title_en || job.title_th) : job.title_th));
+      }
 
       // Populate responsibilities
-      const respList = (isEn && job.responsibilities_en) ? job.responsibilities_en : job.responsibilities_th;
+      const respList = (isEn && job.responsibilities_en && job.responsibilities_en.length) ? job.responsibilities_en : job.responsibilities_th;
       const respContainer = document.getElementById('modalJobResponsibilities');
       if (respContainer && respList) {
         respContainer.innerHTML = respList.map(r => `
           <div class="flex items-start gap-2.5">
-            <i class="fas fa-check-circle text-orange-500 text-xs mt-1 shrink-0"></i>
+            <i class="fas fa-check-circle ${job.is_jobthai ? 'text-orange-500' : 'text-blue-500'} text-xs mt-1 shrink-0"></i>
             <span class="text-slate-700 leading-relaxed">${r}</span>
           </div>
         `).join('');
       }
 
       // Populate qualifications
-      const qualList = (isEn && job.qualifications_en) ? job.qualifications_en : job.qualifications_th;
+      const qualList = (isEn && job.qualifications_en && job.qualifications_en.length) ? job.qualifications_en : job.qualifications_th;
       const qualContainer = document.getElementById('modalJobQualifications');
       if (qualContainer && qualList) {
         qualContainer.innerHTML = qualList.map(q => `
           <div class="flex items-start gap-2.5">
-            <i class="fas fa-circle-dot text-blue-500 text-xs mt-1 shrink-0"></i>
+            <i class="fas fa-circle-dot ${job.is_jobthai ? 'text-orange-500' : 'text-blue-500'} text-xs mt-1 shrink-0"></i>
             <span class="text-slate-700 leading-relaxed">${q}</span>
           </div>
         `).join('');

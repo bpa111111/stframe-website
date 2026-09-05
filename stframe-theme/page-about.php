@@ -434,91 +434,42 @@ get_header(); ?>
             </div>
           </div>
 
+          <?php
+          $contractors_query = new WP_Query( array(
+            'post_type'      => 'st_client',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
+            'meta_query'     => array(
+              array(
+                'key'   => 'client_type',
+                'value' => 'contractor',
+              ),
+            ),
+          ) );
+          ?>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-obayashi.svg" alt="Thai Obayashi" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">THAI OBAYASHI</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท นันทวัน จำกัด (ไทยโอบายาชิ)" data-en="Thai Obayashi Corp">บริษัท นันทวัน จำกัด (ไทยโอบายาชิ)</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-takenaka.svg" alt="Thai Takenaka" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">THAI TAKENAKA</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ไทยทาเคนากะ สากลก่อสร้าง จำกัด" data-en="Thai Takenaka International">บริษัท ไทยทาเคนากะ สากลก่อสร้าง จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-toda.svg" alt="Thai Toda" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">THAI TODA</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ไทยโทดะ คอร์ปอเรชั่น จำกัด" data-en="Thai Toda Corp">บริษัท ไทยโทดะ คอร์ปอเรชั่น จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-shimizu.svg" alt="Thai Shimizu" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">THAI SHIMIZU</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ชิมิซึ คอนสตรัคชั่น (ประเทศไทย) จำกัด" data-en="Thai Shimizu Construction">บริษัท ชิมิซึ คอนสตรัคชั่น (ประเทศไทย) จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/ch-karnchang-tokyu.svg" alt="CH. Karnchang-Tokyu" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">CH. KARNCHANG-TOKYU</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ช.การช่าง-โตกิว คอนสตรัคชั่น จำกัด" data-en="CH. Karnchang-Tokyu Construction">บริษัท ช.การช่าง-โตกิว คอนสตรัคชั่น จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/thai-nishimatsu.svg" alt="Thai Nishimatsu" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">THAI NISHIMATSU</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ไทยนิชิมัตสึ ก่อสร้าง จำกัด" data-en="Thai Nishimatsu Construction">บริษัท ไทยนิชิมัตสึ ก่อสร้าง จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/ritta.svg" alt="RITTA" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">RITTA</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท ฤทธา จำกัด" data-en="Ritta Co., Ltd.">บริษัท ฤทธา จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/pre-built.svg" alt="PRE-BUILT" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">PRE-BUILT</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บมจ. พรีบิลท์" data-en="Pre-Built PLC">บมจ. พรีบิลท์</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/santipitak.svg" alt="SANTIPITAK" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">SANTIPITAK</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท สันติพิทักษ์ จำกัด" data-en="Santipitak Co., Ltd.">บริษัท สันติพิทักษ์ จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/hatha-construction.svg" alt="HATHA CONSTRUCTION" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">HATHA CONSTRUCTION</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท หัตถการ ก่อสร้าง จำกัด" data-en="Hatha Construction Co., Ltd.">บริษัท หัตถการ ก่อสร้าง จำกัด</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/sansiri.svg" alt="SANSIRI" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">SANSIRI</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บมจ. แสนสิริ" data-en="Sansiri PLC">บมจ. แสนสิริ</span></span>
-            </div>
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/sts-logistics.svg" alt="STS.LOGISTICS" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading">STS.LOGISTICS</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บริษัท เอสทีเอส. โลจิสติกส์ จำกัด" data-en="STS Logistics Co., Ltd.">บริษัท เอสทีเอส. โลจิสติกส์ จำกัด</span></span>
-            </div>
+            <?php if ( $contractors_query->have_posts() ) : ?>
+              <?php while ( $contractors_query->have_posts() ) : $contractors_query->the_post(); 
+                $cid       = get_the_ID();
+                $title     = get_the_title();
+                $sub_th    = get_post_meta( $cid, 'subtitle_th', true ) ?: $title;
+                $sub_en    = get_post_meta( $cid, 'subtitle_en', true ) ?: $sub_th;
+                $logo_url  = stframe_get_client_logo_url( $cid );
+              ?>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group">
+                  <div class="h-10 w-full flex items-center justify-center mb-2">
+                    <?php if ( $logo_url ) : ?>
+                      <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
+                    <?php else : ?>
+                      <i class="fas fa-building text-slate-400 text-2xl"></i>
+                    <?php endif; ?>
+                  </div>
+                  <span class="font-bold text-xs text-slate-900 font-heading"><?php echo esc_html( $title ); ?></span>
+                  <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="<?php echo esc_attr( $sub_th ); ?>" data-en="<?php echo esc_attr( $sub_en ); ?>"><?php echo esc_html( $sub_th ); ?></span></span>
+                </div>
+              <?php endwhile; wp_reset_postdata(); ?>
+            <?php endif; ?>
           </div>
         </div>
 
@@ -534,175 +485,42 @@ get_header(); ?>
             </div>
           </div>
 
+          <?php
+          $clients_query = new WP_Query( array(
+            'post_type'      => 'st_client',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'ASC' ),
+            'meta_query'     => array(
+              array(
+                'key'   => 'client_type',
+                'value' => 'client',
+              ),
+            ),
+          ) );
+          ?>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/fine-arts-department.svg" alt="กรมศิลปากร" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block" data-th="กรมศิลปากร" data-en="Fine Arts Dept.">กรมศิลปากร</span>
-              <span class="text-[10px] text-slate-500 mt-0.5">The Fine Arts Department</span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/qsncc.svg" alt="QSNCC" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">QSNCC</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ศูนย์การประชุมแห่งชาติสิริกิติ์" data-en="QSNCC Convention Center">ศูนย์การประชุมแห่งชาติสิริกิติ์</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/western-digital.svg" alt="WESTERN DIGITAL" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">WESTERN DIGITAL</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="เวสเทิร์น ดิจิตอล (ประเทศไทย)" data-en="Western Digital Thailand">เวสเทิร์น ดิจิตอล (ประเทศไทย)</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/iconsiam.svg" alt="ICONSIAM" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">ICONSIAM</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ไอคอนสยาม" data-en="ICONSIAM">ไอคอนสยาม</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/homepro.svg" alt="HOMEPRO" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">HOMEPRO</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บมจ. โฮม โปรดักส์ เซ็นเตอร์" data-en="Home Product Center PLC">บมจ. โฮม โปรดักส์ เซ็นเตอร์</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/megahome.svg" alt="MEGAHOME" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">MEGAHOME</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="เมกาโฮม ศูนย์รวมวัสดุก่อสร้าง" data-en="MegaHome Center">เมกาโฮม ศูนย์รวมวัสดุก่อสร้าง</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/triumph.svg" alt="TRIUMPH MOTORCYCLES" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">TRIUMPH MOTORCYCLES</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ไทรอัมพ์ มอเตอร์ไซเคิลส์" data-en="Triumph Motorcycles">ไทรอัมพ์ มอเตอร์ไซเคิลส์</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/mitsubishi-motors.svg" alt="MITSUBISHI MOTORS" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">MITSUBISHI MOTORS</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="มิตซูบิชิ มอเตอร์ส (MMTh)" data-en="Mitsubishi Motors Thailand">มิตซูบิชิ มอเตอร์ส (MMTh)</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/cpf.svg" alt="CPF" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block"><span data-th="CPF (ซีพีเอฟ)" data-en="CPF Group">CPF (ซีพีเอฟ)</span></span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ท่าอากาศยานภูเก็ต" data-en="Phuket International Airport">ท่าอากาศยานภูเก็ต</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/otec.svg" alt="OTEC (THAILAND)" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">OTEC (THAILAND)</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โรงงานโอเทค วังน้อย" data-en="OTEC Factory Wang Noi">โรงงานโอเทค วังน้อย</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/havi-logistics.svg" alt="HAVI LOGISTICS" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">HAVI LOGISTICS</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ฮาวี่ โลจิสติกส์" data-en="HAVI Logistics">ฮาวี่ โลจิสติกส์</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/continental.svg" alt="CONTINENTAL TYRES" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">CONTINENTAL TYRES</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ยางรถยนต์คอนติเนนทอล" data-en="Continental Tyres">ยางรถยนต์คอนติเนนทอล</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/carabao.svg" alt="CARABAO TAWANDANG" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">CARABAO TAWANDANG</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โรงงานคาราบาวแดง" data-en="Carabao Beverage Plant">โรงงานคาราบาวแดง</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/honda.svg" alt="HONDA AUTOMOBILE" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">HONDA AUTOMOBILE</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ฮอนด้า ออโตโมบิล" data-en="Honda Automobile">ฮอนด้า ออโตโมบิล</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/bluechips.svg" alt="BLUECHIPS MICROHOUSE" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">BLUECHIPS MICROHOUSE</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="บลูชิพส์ ไมโครเฮ้าส์ เชียงใหม่" data-en="Bluechips Microhouse Chiang Mai">บลูชิพส์ ไมโครเฮ้าส์ เชียงใหม่</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/chung-tai.svg" alt="CHUNG TAI RUBBER" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">CHUNG TAI RUBBER</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="จงไท่ รับเบอร์ ระยอง" data-en="Chung Tai Rubber Rayong">จงไท่ รับเบอร์ ระยอง</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/schutz.svg" alt="SCHUTZ (THAILAND)" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">SCHUTZ (THAILAND)</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="ชูทซ์ บรรจุภัณฑ์อุตสาหกรรม" data-en="Schutz Industrial Packaging">ชูทซ์ บรรจุภัณฑ์อุตสาหกรรม</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/spa-food.svg" alt="SPA INTERNATIONAL" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">SPA INTERNATIONAL</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="เอสพีเอ อินเตอร์เนชั่นแนล ฟู้ด" data-en="SPA International Food">เอสพีเอ อินเตอร์เนชั่นแนล ฟู้ด</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/herba-bangkok.svg" alt="HERBA BANGKOK" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">HERBA BANGKOK</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="เฮอร์บา ไบโอ สระบุรี" data-en="Herba Bangkok Saraburi">เฮอร์บา ไบโอ สระบุรี</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/bangkok-university.svg" alt="BANGKOK UNIVERSITY" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">BANGKOK UNIVERSITY</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="มหาวิทยาลัยกรุงเทพ" data-en="Bangkok University">มหาวิทยาลัยกรุงเทพ</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/cib-school.svg" alt="CIB INTERNATIONAL SCHOOL" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">CIB INTERNATIONAL SCHOOL</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โรงเรียนนานาชาติ CIB" data-en="CIB International School">โรงเรียนนานาชาติ CIB</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/mandanarumol-school.svg" alt="MANDANARUMOL SCHOOL" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">MANDANARUMOL SCHOOL</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โรงเรียนมัณฑนารมย์" data-en="Mantanarom School">โรงเรียนมัณฑนารมย์</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/joseph-upatham-school.svg" alt="JOSEPH UPATHAM SCHOOL" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">JOSEPH UPATHAM SCHOOL</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โรงเรียนยอแซฟอุปถัมภ์ อู่ทอง" data-en="Joseph Upatham U-Thong School">โรงเรียนยอแซฟอุปถัมภ์ อู่ทอง</span></span>
-            </div>
-            <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
-              <div class="h-10 w-full flex items-center justify-center mb-2">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/clients/langsuan-village.svg" alt="LANGSUAN VILLAGE" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
-              </div>
-              <span class="font-bold text-xs text-slate-900 font-heading block">LANGSUAN VILLAGE</span>
-              <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="โครงการหลังสวน เพลินจิต" data-en="Langsuan Ploenchit Landmark">โครงการหลังสวน เพลินจิต</span></span>
-            </div>
+            <?php if ( $clients_query->have_posts() ) : ?>
+              <?php while ( $clients_query->have_posts() ) : $clients_query->the_post(); 
+                $cid       = get_the_ID();
+                $title     = get_the_title();
+                $sub_th    = get_post_meta( $cid, 'subtitle_th', true ) ?: $title;
+                $sub_en    = get_post_meta( $cid, 'subtitle_en', true ) ?: $sub_th;
+                $logo_url  = stframe_get_client_logo_url( $cid );
+              ?>
+                <div class="p-4 bg-white border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center hover:border-orange-500 hover:shadow-md transition group shadow-sm">
+                  <div class="h-10 w-full flex items-center justify-center mb-2">
+                    <?php if ( $logo_url ) : ?>
+                      <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="max-h-8 max-w-[120px] object-contain group-hover:scale-105 transition" loading="lazy" decoding="async">
+                    <?php else : ?>
+                      <i class="fas fa-award text-slate-400 text-2xl"></i>
+                    <?php endif; ?>
+                  </div>
+                  <span class="font-bold text-xs text-slate-900 font-heading block"><?php echo esc_html( $title ); ?></span>
+                  <span class="text-[10px] text-slate-500 mt-0.5"><span data-th="<?php echo esc_attr( $sub_th ); ?>" data-en="<?php echo esc_attr( $sub_en ); ?>"><?php echo esc_html( $sub_th ); ?></span></span>
+                </div>
+              <?php endwhile; wp_reset_postdata(); ?>
+            <?php endif; ?>
           </div>
         </div>
 

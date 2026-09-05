@@ -119,33 +119,34 @@ get_header(); ?>
                 <span data-th="ขอบคุณสำหรับข้อมูล! เจ้าหน้าที่ ST Frame & Truss จะติดต่อกลับหาคุณภายใน 24 ชั่วโมงทำการ" data-en="Thank you for contacting us! Our team will get back to you within 24 business hours.">ขอบคุณสำหรับข้อมูล! เจ้าหน้าที่ ST Frame & Truss จะติดต่อกลับหาคุณภายใน 24 ชั่วโมงทำการ</span>
               </div>
 
-              <form id="contact-form" class="space-y-4 text-xs sm:text-sm">
+              <form id="contact-form" class="space-y-4 text-xs sm:text-sm" enctype="multipart/form-data">
+                <input type="hidden" name="applied_job" id="applied-job-input" value="">
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label class="block font-semibold text-slate-700 mb-1" data-th="ชื่อ - นามสกุล *" data-en="Full Name *">ชื่อ - นามสกุล *</label>
-                    <input type="text" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="คุณสมชาย ใจดี">
+                    <input type="text" name="sender_name" id="sender-name-input" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="คุณสมชาย ใจดี">
                   </div>
                   <div>
                     <label class="block font-semibold text-slate-700 mb-1" data-th="ชื่อบริษัท / องค์กร" data-en="Company / Organization Name">ชื่อบริษัท / องค์กร</label>
-                    <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="บริษัท เอบีซี คอนสตรัคชั่น จำกัด">
+                    <input type="text" name="sender_company" id="sender-company-input" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="บริษัท เอบีซี คอนสตรัคชั่น จำกัด">
                   </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label class="block font-semibold text-slate-700 mb-1" data-th="เบอร์โทรศัพท์ติดต่อ *" data-en="Phone Number *">เบอร์โทรศัพท์ติดต่อ *</label>
-                    <input type="tel" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="08X-XXX-XXXX">
+                    <input type="tel" name="sender_phone" id="sender-phone-input" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="08X-XXX-XXXX">
                   </div>
                   <div>
                     <label class="block font-semibold text-slate-700 mb-1" data-th="อีเมลติดต่อ *" data-en="Email Address *">อีเมลติดต่อ *</label>
-                    <input type="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="contact@example.com">
+                    <input type="email" name="sender_email" id="sender-email-input" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="contact@example.com">
                   </div>
                 </div>
 
                 <div>
                   <label class="block font-semibold text-slate-700 mb-1" data-th="ประเภทงานที่ต้องการสอบถาม *" data-en="Inquiry Category *">ประเภทงานที่ต้องการสอบถาม *</label>
-                  <select id="inquiry-type" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition bg-white font-medium">
+                  <select id="inquiry-type" name="inquiry_type" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition bg-white font-medium">
                     <option value="fabrication" data-th="ขอใบเสนอราคา / งานออกแบบและผลิตโครงสร้างเหล็ก (Fabrication)" data-en="Request Quotation / Steel Fabrication">ขอใบเสนอราคา / งานออกแบบและผลิตโครงสร้างเหล็ก (Fabrication)</option>
                     <option value="truss" data-th="งานหลังคาโครงถัก (Roof Truss & Super Truss)" data-en="Roof Truss & Super Truss">งานหลังคาโครงถัก (Roof Truss & Super Truss)</option>
                     <option value="cellular" data-th="งานคานฉลุรู (Cellular Beam)" data-en="Cellular Beam">งานคานฉลุรู (Cellular Beam)</option>
@@ -155,20 +156,20 @@ get_header(); ?>
                   </select>
                 </div>
 
-                <!-- CV / RESUME UPLOAD SECTION (Visible when applying for jobs) -->
-                <div id="cv-upload-container" class="hidden space-y-2 p-4 bg-orange-50/70 rounded-2xl border-2 border-dashed border-orange-300 transition-all duration-300">
+                <!-- CV / RESUME / FILE UPLOAD SECTION -->
+                <div id="cv-upload-container" class="space-y-2 p-4 bg-orange-50/70 rounded-2xl border-2 border-dashed border-orange-300 transition-all duration-300">
                   <div class="flex items-center justify-between">
-                    <label class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5" data-th="แนบไฟล์ประวัติ / CV / Resume / Portfolio *" data-en="Upload CV / Resume / Portfolio *">
+                    <label id="upload-label" class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5" data-th="แนบไฟล์แบบ / เอกสารประกอบ (PDF ไม่เกิน 10MB)" data-en="Attach Drawings / Documents (PDF Max 10MB)">
                       <i class="fas fa-file-arrow-up text-orange-500"></i>
-                      <span>แนบไฟล์ประวัติ / CV / Resume / Portfolio</span>
-                      <span class="text-orange-600 text-xs font-semibold">(แนะนำ)</span>
+                      <span id="upload-label-text">แนบไฟล์แบบ / เอกสารประกอบ</span>
+                      <span id="upload-badge" class="text-orange-600 text-xs font-semibold">(ถ้ามี)</span>
                     </label>
                     <span class="text-[11px] text-slate-400 font-medium"><span data-th="PDF, Word, ภาพ (สูงสุด 10MB)" data-en="PDF, Word, Images (Max 10MB)">PDF, Word, ภาพ (สูงสุด 10MB)</span></span>
                   </div>
 
                   <!-- Dropzone & File Input Box -->
                   <div id="dropzone-box" class="relative group bg-white hover:bg-orange-50/40 rounded-xl p-5 border border-slate-200 hover:border-orange-400 text-center cursor-pointer transition-all duration-200">
-                    <input type="file" id="cv-file-input" name="resume" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" id="cv-file-input" name="resume_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <div class="flex flex-col items-center justify-center space-y-1.5">
                       <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-cloud-arrow-up"></i>
@@ -190,7 +191,7 @@ get_header(); ?>
                       </div>
                       <div class="min-w-0 flex-1 text-left">
                         <p id="file-name-display" class="text-xs font-bold text-slate-800 truncate">resume.pdf</p>
-                        <p data-th="1.2 MB • พร้อมส่ง" data-en="1.2 MB • Ready" id="file-size-display" class="text-[10px] text-emerald-600 font-medium">1.2 MB • พร้อมส่ง</p>
+                        <p data-th="พร้อมส่ง" data-en="Ready" id="file-size-display" class="text-[10px] text-emerald-600 font-medium">พร้อมส่ง</p>
                       </div>
                     </div>
                     <button type="button" id="remove-file-btn" class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-slate-100 rounded-lg transition" title="ลบไฟล์นี้">
@@ -201,7 +202,7 @@ get_header(); ?>
 
                 <div>
                   <label id="message-label" class="block font-semibold text-slate-700 mb-1" data-th="รายละเอียดข้อความ / ขอบเขตโครงการ *" data-en="Message / Project Scope *">รายละเอียดข้อความ / ขอบเขตโครงการ *</label>
-                  <textarea id="message-input" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="ระบุประเภทอาคาร ขนาดพื้นที่ หรือแนบลิงก์แบบโครงสร้าง..."></textarea>
+                  <textarea id="message-input" name="message" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition" placeholder="ระบุประเภทอาคาร ขนาดพื้นที่ หรือแนบลิงก์แบบโครงสร้าง..."></textarea>
                 </div>
 
                 <button type="submit" id="submit-btn" class="w-full py-3.5 bg-gradient-to-r from-orange-600 to-amber-500 whitespace-nowrap hover:from-orange-500 hover:to-amber-400 text-white font-bold rounded-xl shadow-lg hover:shadow-orange-500/25 transition">
