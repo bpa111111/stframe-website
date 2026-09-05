@@ -229,15 +229,23 @@ function initContactForm() {
 
   if (!form) return;
 
+  const uploadLabelText = document.getElementById('upload-label-text');
+  const uploadBadge = document.getElementById('upload-badge');
+  const appliedJobInput = document.getElementById('applied-job-input');
+
   function updateFormState(category) {
     const isCareers = (category === 'careers');
     const currentLang = localStorage.getItem('stframe_lang') || 'th';
 
-    if (cvContainer) {
+    if (uploadLabelText && uploadBadge) {
       if (isCareers) {
-        cvContainer.classList.remove('hidden');
+        uploadLabelText.innerText = currentLang === 'th' ? 'แนบไฟล์ประวัติ / CV / Resume / Portfolio' : 'Attach CV / Resume / Portfolio';
+        uploadBadge.innerText = currentLang === 'th' ? '(แนะนำสำหรับสมัครงาน)' : '(Recommended)';
+        uploadBadge.className = 'text-orange-600 text-xs font-semibold';
       } else {
-        cvContainer.classList.add('hidden');
+        uploadLabelText.innerText = currentLang === 'th' ? 'แนบไฟล์แบบ / เอกสารประกอบ' : 'Attach Drawings / Documents';
+        uploadBadge.innerText = currentLang === 'th' ? '(ถ้ามี)' : '(Optional)';
+        uploadBadge.className = 'text-slate-500 text-xs font-normal';
       }
     }
 
@@ -278,11 +286,16 @@ function initContactForm() {
     if (inquirySelect) {
       inquirySelect.value = 'careers';
     }
+    if (appliedJobInput && applyJob) {
+      appliedJobInput.value = decodeURIComponent(applyJob);
+    }
     updateFormState('careers');
 
     if (applyJob && messageInput) {
       messageInput.value = `สมัครงานตำแหน่ง: ${decodeURIComponent(applyJob)}\n\n`;
     }
+  } else {
+    updateFormState(inquirySelect ? inquirySelect.value : 'fabrication');
   }
 
   // File Upload Handling (Input Change & Drag-and-Drop)
@@ -347,8 +360,8 @@ function initContactForm() {
     });
   }
 
-  // Form Submit
-  form.addEventListener('submit', (e) => {
+  // Form Submit with Real AJAX
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const currentLang = localStorage.getItem('stframe_lang') || 'th';
     const isCareers = inquirySelect && inquirySelect.value === 'careers';
@@ -356,36 +369,132 @@ function initContactForm() {
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = currentLang === 'th' ? '<i class="fas fa-spinner fa-spin mr-2"></i>กำลังส่งข้อมูล...' : '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+    submitBtn.innerHTML = currentLang === 'th' ? '<i class="fas fa-spinner fa-spin mr-2"></i>กำลังส่งข้อมูลและอัปโหลดไฟล์...' : '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting & uploading...';
 
-    setTimeout(() => {
+    // If running on static GitHub Pages or static environment without WordPress AJAX backend
+    if (!window.stframe_vars || !window.stframe_vars.ajax_url || window.location.hostname.includes('github.io')) {
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        form.reset();
+
+        if (fileInput) fileInput.value = '';
+        if (dropzoneBox) dropzoneBox.classList.remove('hidden');
+        if (filePreviewBox) {
+          filePreviewBox.classList.add('hidden');
+          filePreviewBox.classList.remove('flex');
+        }
+        updateFormState(inquirySelect ? inquirySelect.value : 'fabrication');
+
+        if (alertBox) {
+          alertBox.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3 shadow-sm';
+          if (isCareers) {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ได้รับข้อมูลการสมัครงานและไฟล์ประวัติของคุณเรียบร้อยแล้ว!</p>
+                <p class="text-emerald-700 mt-0.5">ฝ่ายทรัพยากรบุคคล (HR) บจก. เอส ที เฟรม แอนด์ ทรัส จะตรวจสอบคุณสมบัติและติดต่อกลับตามเบอร์โทรศัพท์หรืออีเมลที่ระบุไว้ครับ</p>
+              </div>
+            `;
+          } else {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ขอบคุณสำหรับข้อมูลและเอกสารที่ส่งมา!</p>
+                <p class="text-emerald-700 mt-0.5">ทีมวิศวกรและฝ่ายขาย บจก. เอส ที เฟรม แอนด์ ทรัส ได้รับข้อมูลแล้ว และจะติดต่อกลับหาคุณภายใน 24 ชั่วโมงทำการ</p>
+              </div>
+            `;
+          }
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => {
+            alertBox.classList.add('hidden');
+          }, 9000);
+        }
+      }, 1000);
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.append('action', 'stframe_submit_contact');
+    formData.append('contact_nonce', (window.stframe_vars && window.stframe_vars.nonce) ? window.stframe_vars.nonce : '');
+
+    const ajaxUrl = (window.stframe_vars && window.stframe_vars.ajax_url) ? window.stframe_vars.ajax_url : '/wp-admin/admin-ajax.php';
+
+    try {
+      const response = await fetch(ajaxUrl, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      form.reset();
 
-      // Reset file upload state
-      if (fileInput) fileInput.value = '';
-      if (dropzoneBox) dropzoneBox.classList.remove('hidden');
-      if (filePreviewBox) {
-        filePreviewBox.classList.add('hidden');
-        filePreviewBox.classList.remove('flex');
-      }
-      updateFormState('fabrication');
+      if (result.success) {
+        form.reset();
 
-      if (alertBox) {
-        alertBox.classList.remove('hidden');
-        if (isCareers) {
-          alertBox.innerHTML = `
-            <i class="fas fa-check-circle text-emerald-600 text-base shrink-0"></i>
-            <span>ได้รับข้อมูลการสมัครงานและไฟล์ประวัติของคุณเรียบร้อยแล้ว! ฝ่ายบุคคล ST Frame & Truss จะติดต่อกลับหาคุณโดยเร็วที่สุด</span>
-          `;
+        // Reset file upload state
+        if (fileInput) fileInput.value = '';
+        if (dropzoneBox) dropzoneBox.classList.remove('hidden');
+        if (filePreviewBox) {
+          filePreviewBox.classList.add('hidden');
+          filePreviewBox.classList.remove('flex');
         }
-        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        setTimeout(() => {
-          alertBox.classList.add('hidden');
-        }, 6000);
+        updateFormState(inquirySelect ? inquirySelect.value : 'fabrication');
+
+        if (alertBox) {
+          alertBox.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3 shadow-sm';
+          if (isCareers) {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ได้รับข้อมูลการสมัครงานและไฟล์ประวัติของคุณเรียบร้อยแล้ว!</p>
+                <p class="text-emerald-700 mt-0.5">ฝ่ายทรัพยากรบุคคล (HR) บจก. เอส ที เฟรม แอนด์ ทรัส จะตรวจสอบคุณสมบัติและติดต่อกลับตามเบอร์โทรศัพท์หรืออีเมลที่ระบุไว้ครับ</p>
+              </div>
+            `;
+          } else {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ขอบคุณสำหรับข้อมูลและเอกสารที่ส่งมา!</p>
+                <p class="text-emerald-700 mt-0.5">ทีมวิศวกรและฝ่ายขาย บจก. เอส ที เฟรม แอนด์ ทรัส ได้รับข้อมูลแล้ว และจะติดต่อกลับหาคุณภายใน 24 ชั่วโมงทำการ</p>
+              </div>
+            `;
+          }
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => {
+            alertBox.classList.add('hidden');
+          }, 9000);
+        }
+      } else {
+        if (alertBox) {
+          alertBox.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-3 shadow-sm';
+          alertBox.innerHTML = `
+            <i class="fas fa-exclamation-circle text-red-600 text-xl shrink-0"></i>
+            <div>
+              <p class="font-bold text-sm">ไม่สามารถส่งข้อมูลได้</p>
+              <p class="text-red-700 mt-0.5">${result.data?.message || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือโทรติดต่อเราโดยตรง'}</p>
+            </div>
+          `;
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       }
-    }, 1200);
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      console.error('Contact form submission error:', err);
+      if (alertBox) {
+        alertBox.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-3 shadow-sm';
+        alertBox.innerHTML = `
+          <i class="fas fa-exclamation-triangle text-red-600 text-xl shrink-0"></i>
+          <div>
+            <p class="font-bold text-sm">เกิดข้อผิดพลาดในการเชื่อมต่อ</p>
+            <p class="text-red-700 mt-0.5">กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต หรือโทรติดต่อเราได้ที่ 035-902-690 ถึง 3</p>
+          </div>
+        `;
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
   });
 }
 
@@ -436,6 +545,9 @@ window.setCctvModalLang = function(lang) {
 
 function createCctvModalElement() {
   if (document.getElementById('cctv-modal')) return;
+
+  const themeUri = (window.stframe_vars && window.stframe_vars.theme_uri) ? window.stframe_vars.theme_uri : '';
+  const cctvImgSrc = themeUri ? (themeUri + '/assets/images/cctv-sign.png') : 'assets/images/cctv-sign.png';
 
   const modalHtml = `
   <div id="cctv-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
@@ -580,7 +692,7 @@ function createCctvModalElement() {
             <div class="pt-4 border-t border-slate-200 text-center space-y-2">
               <h5 class="font-bold text-slate-900 text-xs sm:text-sm">ป้ายประกาศการบันทึกเหตุการณ์ด้วยกล้องวงจรปิดในสถานที่ทำงาน</h5>
               <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md inline-block max-w-lg w-full bg-slate-50 p-2">
-                <img src="assets/images/cctv-sign.png" alt="ป้ายประกาศการบันทึกเหตุการณ์ด้วยกล้องวงจรปิดในสถานที่ทำงาน ST. Frame & Truss" class="w-full h-auto rounded-xl object-contain">
+                <img src="${cctvImgSrc}" alt="ป้ายประกาศการบันทึกเหตุการณ์ด้วยกล้องวงจรปิดในสถานที่ทำงาน ST. Frame & Truss" class="w-full h-auto rounded-xl object-contain">
               </div>
             </div>
 
@@ -705,7 +817,7 @@ function createCctvModalElement() {
             <div class="pt-4 border-t border-slate-200 text-center space-y-2">
               <h5 class="font-bold text-slate-900 text-xs sm:text-sm">Workplace CCTV Surveillance Warning Notice</h5>
               <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md inline-block max-w-lg w-full bg-slate-50 p-2">
-                <img src="assets/images/cctv-sign.png" alt="ST. Frame & Truss Workplace CCTV Surveillance Notice" class="w-full h-auto rounded-xl object-contain">
+                <img src="${cctvImgSrc}" alt="ST. Frame & Truss Workplace CCTV Surveillance Notice" class="w-full h-auto rounded-xl object-contain">
               </div>
             </div>
 

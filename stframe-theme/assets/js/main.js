@@ -371,6 +371,49 @@ function initContactForm() {
     submitBtn.disabled = true;
     submitBtn.innerHTML = currentLang === 'th' ? '<i class="fas fa-spinner fa-spin mr-2"></i>กำลังส่งข้อมูลและอัปโหลดไฟล์...' : '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting & uploading...';
 
+    // If running on static GitHub Pages or static environment without WordPress AJAX backend
+    if (!window.stframe_vars || !window.stframe_vars.ajax_url || window.location.hostname.includes('github.io')) {
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        form.reset();
+
+        if (fileInput) fileInput.value = '';
+        if (dropzoneBox) dropzoneBox.classList.remove('hidden');
+        if (filePreviewBox) {
+          filePreviewBox.classList.add('hidden');
+          filePreviewBox.classList.remove('flex');
+        }
+        updateFormState(inquirySelect ? inquirySelect.value : 'fabrication');
+
+        if (alertBox) {
+          alertBox.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3 shadow-sm';
+          if (isCareers) {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ได้รับข้อมูลการสมัครงานและไฟล์ประวัติของคุณเรียบร้อยแล้ว!</p>
+                <p class="text-emerald-700 mt-0.5">ฝ่ายทรัพยากรบุคคล (HR) บจก. เอส ที เฟรม แอนด์ ทรัส จะตรวจสอบคุณสมบัติและติดต่อกลับตามเบอร์โทรศัพท์หรืออีเมลที่ระบุไว้ครับ</p>
+              </div>
+            `;
+          } else {
+            alertBox.innerHTML = `
+              <i class="fas fa-check-circle text-emerald-600 text-xl shrink-0"></i>
+              <div>
+                <p class="font-bold text-sm">ขอบคุณสำหรับข้อมูลและเอกสารที่ส่งมา!</p>
+                <p class="text-emerald-700 mt-0.5">ทีมวิศวกรและฝ่ายขาย บจก. เอส ที เฟรม แอนด์ ทรัส ได้รับข้อมูลแล้ว และจะติดต่อกลับหาคุณภายใน 24 ชั่วโมงทำการ</p>
+              </div>
+            `;
+          }
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          setTimeout(() => {
+            alertBox.classList.add('hidden');
+          }, 9000);
+        }
+      }, 1000);
+      return;
+    }
+
     const formData = new FormData(form);
     formData.append('action', 'stframe_submit_contact');
     formData.append('contact_nonce', (window.stframe_vars && window.stframe_vars.nonce) ? window.stframe_vars.nonce : '');
@@ -503,8 +546,8 @@ window.setCctvModalLang = function(lang) {
 function createCctvModalElement() {
   if (document.getElementById('cctv-modal')) return;
 
-  const themeUri = (window.stframe_vars && window.stframe_vars.theme_uri) ? window.stframe_vars.theme_uri : '/wp-content/themes/stframe-theme';
-  const cctvImgSrc = themeUri + '/assets/images/cctv-sign.png';
+  const themeUri = (window.stframe_vars && window.stframe_vars.theme_uri) ? window.stframe_vars.theme_uri : '';
+  const cctvImgSrc = themeUri ? (themeUri + '/assets/images/cctv-sign.png') : 'assets/images/cctv-sign.png';
 
   const modalHtml = `
   <div id="cctv-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
